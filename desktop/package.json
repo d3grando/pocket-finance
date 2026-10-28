@@ -1,0 +1,39 @@
+{
+  "name": "pocket-desktop",
+  "productName": "Pocket",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pocket Finance — tray Quick Capture for Windows",
+  "author": "d3grando",
+  "license": "MIT",
+  "homepage": "https://github.com/d3grando/pocket-finance",
+  "main": "out/main/index.js",
+  "type": "commonjs",
+  "packageManager": "pnpm@12.15.0",
+  "scripts": {
+    "build:renderer": "pnpm --dir ../web install --frozen-lockfile && pnpm --dir ../web build:desktop",
+    "build": "electron-vite build",
+    "start": "electron-vite build && electron .",
+    "test": "vitest run",
+    "test:e2e": "electron-vite build && xvfb-run -a -s \"-screen 0 1920x1080x24\" playwright test",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "icons": "node scripts/make-icons.mjs",
+    "dist:win": "electron-vite build && electron-builder --win nsis --x64 --publish never",
+    "dist:win:docker": "electron-vite build && docker run --rm -v \"$PWD\":/project -w /project -e CSC_IDENTITY_AUTO_DISCOVERY=false electronuserland/builder:wine bash -lc \"npx --no-install electron-builder --win nsis --x64 --publish never\"",
+    "dist:mac": "electron-vite build && electron-builder --mac --arm64 --publish never",
+    "dist:dir": "electron-vite build && electron-builder --dir",
+    "test:packaged": "electron-vite build && electron-builder --linux dir --publish never && xvfb-run -a -s \"-screen 0 1920x1080x24\" node tests/e2e/packaged-smoke.mjs",
+    "fuses:win": "node scripts/check-fuses.mjs release/win-unpacked/Pocket.exe"
+  },
+  "devDependencies": {
+    "@electron/fuses": "1.8.0",
+    "@playwright/test": "1.64.1",
+    "@types/node": "22.20.5",
+    "electron": "44.10.0",
+    "electron-builder": "26.18.0",
+    "electron-vite": "6.0.0",
+    "typescript": "6.0.3",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}

@@ -1,0 +1,312 @@
+# Pocket Finance — Docker Compose. Docs: docs/INSTALL.md, UPDATE.md, BACKUP.md.
+#
+#   db      PostgreSQL 16 (volume pgdata, healthcheck; internal network only)
+#   api     FastAPI (uvicorn); `alembic upgrade head` on start
+#   worker  scheduler (python -m app.worker, same image as api, single instance — ARCH §9)
+#   bot     Telegram bot, long polling (no TELEGRAM_BOT_TOKEN → idles, no restart loop)
+#   web     Caddy :8080 — SPA/PWA static + /api/* → api. The ONLY published port
+#           (PF_HTTP_BIND:PF_HTTP_PORT) — point your reverse proxy here. :8081 is an internal
+#           listener for the edge Caddy (never published).
+#   backup  nightly pg_dump with rotation 7d/4w/6m (+ optional rsync/scp to a remote host)
+#   caddy   profile `standalone` (alias `caddy`): edge Caddy with automatic HTTPS for PF_DOMAIN
+#           on a bare VPS (ports 80/443).
+#
+#   docker compose up -d --build                      # behind an external HTTPS proxy
+#   docker compose --profile standalone up -d --build # bare VPS with its own HTTPS
+#
+# Every value comes from .env (see .env.example); secrets are never baked into images.
+
+name: ${COMPOSE_PROJECT_NAME:-pocket}
+
+x-restart: &restart
+  restart: unless-stopped
+
+x-logging: &logging
+  logging:
+    driver: json-file
+    options:
+      max-size: "20m"
+      max-file: "5"
+
+x-hardening: &hardening
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+
+x-backend-build: &backend-build
+  context: .
+  dockerfile: infra/docker/backend.Dockerfile
+  args:
+    PF_VERSION: ${PF_VERSION:-1.0.0}
+
+x-backend-env: &backend-env
+  APP_ENV: ${APP_ENV:-prod}
+  APP_VERSION: ${PF_VERSION:-1.0.0}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://${POSTGRES_USER:-pocket}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-pocket}}
+  DB_POOL_SIZE: ${DB_POOL_SIZE:-10}
+  SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY in .env (scripts/gen-secrets.sh)}
+  PUBLIC_URL: ${PUBLIC_URL:?set PUBLIC_URL in .env (https:// address of the site)}
+  WEB_ORIGINS: ${WEB_ORIGINS:-}
+  DESKTOP_ORIGIN: ${DESKTOP_ORIGIN:-app://pocket}
+  COOKIE_SECURE: ${COOKIE_SECURE:-true}
+  SESSION_TTL_DAYS: ${SESSION_TTL_DAYS:-90}
+  WEBAUTHN_RP_ID: ${WEBAUTHN_RP_ID:-}
+  WEBAUTHN_RP_NAME: ${WEBAUTHN_RP_NAME:-Pocket}
+  WEBAUTHN_ORIGINS: ${WEBAUTHN_ORIGINS:-}
+  # Any OpenAI-compatible API; prod refuses to start without all three unless AI_ENABLED=false.
+  AI_ENABLED: ${AI_ENABLED:-true}
+  AI_BASE_URL: ${AI_BASE_URL:-}
+  AI_API_KEY: ${AI_API_KEY:-}
+  AI_MODEL: ${AI_MODEL:-}
+  AI_TIMEOUT: ${AI_TIMEOUT:-20}
+  AI_MAX_CONCURRENCY: ${AI_MAX_CONCURRENCY:-4}
+  BOT_SERVICE_TOKEN: ${BOT_SERVICE_TOKEN:?set BOT_SERVICE_TOKEN in .env (scripts/gen-secrets.sh)}
+  # Empty = the bot answers nobody and no notifications are sent.
+  TELEGRAM_ALLOWED_IDS: ${TELEGRAM_ALLOWED_IDS:-}
+  TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME:-}
+  DEFAULT_TIMEZONE: ${DEFAULT_TIMEZONE:-Asia/Ho_Chi_Minh}
+  COINGECKO_API_KEY: ${COINGECKO_API_KEY:-}
+  RATES_HTTP_TIMEOUT: ${RATES_HTTP_TIMEOUT:-5}
+  WORKER_TICK_SECONDS: ${WORKER_TICK_SECONDS:-30}
+  # Optional JSON with extra account aliases for the parser (path inside the container).
+  PARSER_LEXICON_EXTRA: ${PARSER_LEXICON_EXTRA:-}
+  # Rate limits (app/core/security_config.py; defaults are the same as there).
+  RATE_LIMIT_LOGIN_PER_MINUTE: ${RATE_LIMIT_LOGIN_PER_MINUTE:-5}
+  RATE_LIMIT_LOGIN_FAILURES_PER_HOUR: ${RATE_LIMIT_LOGIN_FAILURES_PER_HOUR:-20}
+  RATE_LIMIT_BAN_THRESHOLD: ${RATE_LIMIT_BAN_THRESHOLD:-10}
+  RATE_LIMIT_BAN_WINDOW_SECONDS: ${RATE_LIMIT_BAN_WINDOW_SECONDS:-900}
+  RATE_LIMIT_BAN_SECONDS: ${RATE_LIMIT_BAN_SECONDS:-900}
+  RATE_LIMIT_PASSKEY_PER_MINUTE: ${RATE_LIMIT_PASSKEY_PER_MINUTE:-20}
+  RATE_LIMIT_API_PER_MINUTE: ${RATE_LIMIT_API_PER_MINUTE:-300}
+  RATE_LIMIT_AI_PER_MINUTE: ${RATE_LIMIT_AI_PER_MINUTE:-60}
+  RATE_LIMIT_IP_PER_MINUTE: ${RATE_LIMIT_IP_PER_MINUTE:-1200}
+  RATE_LIMIT_KNOWN_DEVICE_FAILURES_PER_HOUR: ${RATE_LIMIT_KNOWN_DEVICE_FAILURES_PER_HOUR:-10}
+
+services:
+  db:
+    image: ${POSTGRES_IMAGE:-postgres:16-alpine}
+    <<: [*restart, *logging]
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pocket}
+      POSTGRES_USER: ${POSTGRES_USER:-pocket}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+      TZ: UTC
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -q -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+      start_interval: 1s
+    shm_size: 256m
+    stop_grace_period: 30s
+    networks: [internal]
+
+  api:
+    build: *backend-build
+    image: ${PF_IMAGE_PREFIX:-pocket}-backend:${PF_VERSION:-1.0.0}
+    command: ["api"]
+    <<: [*restart, *logging, *hardening]
+    environment:
+      <<: *backend-env
+      MIGRATE_ON_START: ${MIGRATE_ON_START:-true}
+      # Whose X-Forwarded-For the API believes (IPs/CIDRs, comma-separated). "auto" = loopback +
+      # the compose networks (= the web container, which sends the client IP it determined
+      # itself). uvicorn --proxy-headers gets the same list; "*" is refused (ARCH §11).
+      TRUSTED_PROXIES: ${API_TRUSTED_PROXIES:-auto}
+    depends_on:
+      db:
+        condition: service_healthy
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m
+    healthcheck:
+      # 200 with "db": true; "degraded" (database unreachable) counts as unhealthy.
+      test: ["CMD", "pf-entrypoint", "healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 90s
+      start_interval: 2s
+    stop_grace_period: 20s
+    # internal: db; default: egress to the LLM provider and rate sources.
+    networks: [internal, default]
+
+  worker:
+    build: *backend-build
+    image: ${PF_IMAGE_PREFIX:-pocket}-backend:${PF_VERSION:-1.0.0}
+    command: ["worker"]
+    <<: [*restart, *logging, *hardening]
+    environment:
+      <<: *backend-env
+    depends_on:
+      db:
+        condition: service_healthy
+      api:
+        condition: service_healthy   # migrations are applied by api
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m
+    stop_grace_period: 20s
+    networks: [internal, default]
+
+  bot:
+    build:
+      context: .
+      dockerfile: infra/docker/bot.Dockerfile
+      args:
+        PF_VERSION: ${PF_VERSION:-1.0.0}
+    image: ${PF_IMAGE_PREFIX:-pocket}-bot:${PF_VERSION:-1.0.0}
+    <<: [*restart, *logging, *hardening]
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      API_BASE_URL: ${BOT_API_BASE_URL:-http://api:8000/api/v1}
+      BOT_SERVICE_TOKEN: ${BOT_SERVICE_TOKEN:?set BOT_SERVICE_TOKEN in .env}
+      TELEGRAM_ALLOWED_IDS: ${TELEGRAM_ALLOWED_IDS:-}
+      PUBLIC_URL: ${PUBLIC_URL:?set PUBLIC_URL in .env (https:// address of the site)}
+      OUTBOX_POLL_SECONDS: ${OUTBOX_POLL_SECONDS:-5}
+      # «сегодня/вчера» in the bot: the same zone as the server default
+      TIMEZONE: ${DEFAULT_TIMEZONE:-Asia/Ho_Chi_Minh}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      api:
+        condition: service_healthy
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m
+    stop_grace_period: 15s
+    networks: [default]
+
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+      args:
+        PF_VERSION: ${PF_VERSION:-1.0.0}
+        VITE_API_BASE_URL: ${WEB_API_BASE_URL:-/api/v1}
+        # diagnostics only (e.g. "pnpm exec vite build" skips the type check)
+        WEB_BUILD_CMD: ${WEB_BUILD_CMD:-pnpm run build}
+    image: ${PF_IMAGE_PREFIX:-pocket}-web:${PF_VERSION:-1.0.0}
+    <<: [*restart, *logging, *hardening]
+    environment:
+      API_UPSTREAM: api:8000
+      # Proxies in front of the published port whose X-Forwarded-For Caddy believes
+      # (space-separated CIDRs). Default: nobody — the client IP is the TCP peer. Behind your
+      # own reverse proxy put its exact address here (docs/INSTALL.md). The standalone edge
+      # uses the internal listener :8081 and needs nothing here.
+      TRUSTED_PROXIES: ${TRUSTED_PROXIES:-127.0.0.1/32}
+      WEB_LOG_LEVEL: ${WEB_LOG_LEVEL:-INFO}
+    ports:
+      - "${PF_HTTP_BIND:-127.0.0.1}:${PF_HTTP_PORT:-8080}:8080"
+    depends_on:
+      api:
+        condition: service_started
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+      start_interval: 1s
+    networks: [default]
+
+  backup:
+    build:
+      context: .
+      dockerfile: infra/docker/backup.Dockerfile
+      args:
+        POSTGRES_IMAGE: ${POSTGRES_IMAGE:-postgres:16-alpine}
+        PF_VERSION: ${PF_VERSION:-1.0.0}
+    image: ${PF_IMAGE_PREFIX:-pocket}-backup:${PF_VERSION:-1.0.0}
+    <<: [*restart, *logging, *hardening]
+    # Runs as root (busybox crond + pg_dump) with only what it needs: crond switches identity
+    # for each job (SETUID/SETGID); DAC_OVERRIDE keeps BACKUP_DIR and the SSH key usable when
+    # they belong to a host user.
+    cap_add: [SETUID, SETGID, DAC_OVERRIDE]
+    mem_limit: 512m
+    pids_limit: 128
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGUSER: ${POSTGRES_USER:-pocket}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      PGDATABASE: ${POSTGRES_DB:-pocket}
+      TZ: ${BACKUP_TZ:-Asia/Ho_Chi_Minh}
+      BACKUP_CRON: ${BACKUP_CRON:-30 3 * * *}
+      BACKUP_ON_START: ${BACKUP_ON_START:-false}
+      BACKUP_PREFIX: ${BACKUP_PREFIX:-pocket}
+      BACKUP_KEEP_DAILY: ${BACKUP_KEEP_DAILY:-7}
+      BACKUP_KEEP_WEEKLY: ${BACKUP_KEEP_WEEKLY:-4}
+      BACKUP_KEEP_MONTHLY: ${BACKUP_KEEP_MONTHLY:-6}
+      BACKUP_MAX_AGE_HOURS: ${BACKUP_MAX_AGE_HOURS:-30}
+      BACKUP_REMOTE: ${BACKUP_REMOTE:-}
+      BACKUP_REMOTE_METHOD: ${BACKUP_REMOTE_METHOD:-rsync}
+      BACKUP_REMOTE_PORT: ${BACKUP_REMOTE_PORT:-22}
+      BACKUP_REMOTE_DELETE: ${BACKUP_REMOTE_DELETE:-true}
+      BACKUP_SSH_KEY: /ssh/${BACKUP_SSH_KEY_NAME:-id_ed25519}
+      BACKUP_SSH_KNOWN_HOSTS: /ssh/known_hosts
+    volumes:
+      - ${BACKUP_DIR:-./infra/var/backups}:/backups
+      - ${BACKUP_SSH_DIR:-./infra/var/ssh}:/ssh:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    stop_grace_period: 5s
+    # internal: db; default: egress to the remote backup host.
+    networks: [internal, default]
+
+  caddy:
+    image: ${CADDY_IMAGE:-caddy:2}
+    profiles: [standalone, caddy]
+    <<: [*restart, *logging, *hardening]
+    # Ports 80/443 inside the container.
+    cap_add: [NET_BIND_SERVICE]
+    mem_limit: 256m
+    pids_limit: 256
+    entrypoint: ["/bin/sh", "/etc/caddy/edge-entrypoint.sh"]
+    environment:
+      PF_DOMAIN: ${PF_DOMAIN:-}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+      # Internal edge listener of web (trusts this hop's X-Forwarded-For, never published).
+      WEB_UPSTREAM: web:8081
+      EDGE_LOG_LEVEL: ${EDGE_LOG_LEVEL:-INFO}
+    ports:
+      - "${EDGE_BIND:-0.0.0.0}:${EDGE_HTTP_PORT:-80}:80"
+      - "${EDGE_BIND:-0.0.0.0}:${EDGE_HTTPS_PORT:-443}:443"
+      - "${EDGE_BIND:-0.0.0.0}:${EDGE_HTTPS_PORT:-443}:443/udp"
+    volumes:
+      - ./infra/caddy/edge.Caddyfile.tmpl:/etc/caddy/edge.Caddyfile.tmpl:ro
+      - ./infra/caddy/edge-entrypoint.sh:/etc/caddy/edge-entrypoint.sh:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      web:
+        condition: service_healthy
+    healthcheck:
+      # Caddy admin API (container-local only): the edge process is up and has a config.
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:2019/config/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+      start_interval: 2s
+    networks: [default]
+
+networks:
+  # db lives only here: no egress, not reachable from bot/web.
+  internal:
+    internal: true
+  default: {}
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:

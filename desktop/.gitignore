@@ -1,0 +1,5 @@
+# desktop-local ignores (root .gitignore also ignores node_modules/, out/, release/, renderer/)
+test-results/
+playwright-report/
+# build/ holds electron-builder resources (icon.ico) — root .gitignore ignores build/ everywhere
+!build/

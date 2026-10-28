@@ -1,0 +1,293 @@
+/* DESIGN.md §1.2 verbatim (the two @imports live in globals.css), plus
+   motion tokens (§7), materials (§6), reduced motion/transparency and small utilities. */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: light;
+  --radius: 0.75rem;                                  /* 12px — базовый радиус карточек */
+
+  /* Нейтрали */
+  --background: oklch(0.985 0.003 265);               /* #f9fafc фон приложения */
+  --foreground: oklch(0.205 0.015 265);               /* #14171e основной текст */
+  --card: oklch(1 0 0);                               /* #ffffff поверхность карточек */
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --surface-2: oklch(0.965 0.004 265);                /* #f2f3f6 вложенная поверхность, hover строк */
+  --muted: oklch(0.955 0.004 265);                    /* #eff0f3 фон чипов, скелетонов */
+  --muted-foreground: oklch(0.50 0.015 265);          /* #5f636c вторичный текст, 6.0:1 на card */
+  --subtle-foreground: oklch(0.60 0.012 265);         /* #7d8088 только иконки/декор, 3.9:1 — не для текста < 18px */
+  --border: oklch(0.915 0.006 265);                   /* #e1e3e7 */
+  --input: oklch(0.90 0.006 265);
+  --ring: oklch(0.52 0.20 282);                       /* = primary */
+
+  /* Акцент «Iris» */
+  --primary: oklch(0.52 0.20 282);                    /* #5d4ed6, белый текст 5.95:1 */
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-soft: oklch(0.96 0.022 282);              /* #eff0ff, primary-текст на нём 5.3:1 */
+  --secondary: oklch(0.955 0.004 265);
+  --secondary-foreground: var(--foreground);
+  --accent: oklch(0.955 0.010 282);                   /* shadcn accent = hover пунктов меню */
+  --accent-foreground: var(--foreground);
+
+  /* Смысловые */
+  --expense: oklch(0.555 0.19 25);                    /* #ca3134 — знак/чип расхода, графики; 5.2:1 */
+  --expense-soft: oklch(0.968 0.018 25);              /* #fff0ee */
+  --income: oklch(0.52 0.12 155);                     /* #187c49 — доход; 5.2:1 */
+  --income-soft: oklch(0.965 0.025 155);              /* #e7f9ec */
+  --transfer: oklch(0.53 0.10 240);                   /* #2a73a0 — перевод/обмен; 5.2:1 */
+  --transfer-soft: oklch(0.965 0.018 240);            /* #e9f5ff */
+  --warning: oklch(0.53 0.12 65);                     /* #9a5a00 — «разобрать», офлайн; 5.4:1 */
+  --warning-soft: oklch(0.97 0.03 80);                /* #fff3df */
+  --success: var(--income);
+  --destructive: oklch(0.55 0.21 27);                 /* #d01d21 — ошибки, удаление; 5.4:1 */
+  --destructive-foreground: oklch(0.99 0 0);
+
+  /* Категориальная палитра графиков (порядок фиксирован, см. 1.5) */
+  --chart-1: oklch(0.56 0.19 282);                    /* iris    #685dde */
+  --chart-2: oklch(0.60 0.10 200);                    /* teal    #0d9298 */
+  --chart-3: oklch(0.64 0.17 45);                     /* orange  #dc631e */
+  --chart-4: oklch(0.58 0.14 150);                    /* green   #2a904b */
+  --chart-5: oklch(0.58 0.21 350);                    /* magenta #cd2e8b */
+  --chart-6: oklch(0.64 0.13 75);                     /* amber   #ba7f14 */
+  --chart-7: oklch(0.52 0.14 250);                    /* blue    #116bb5 */
+  --chart-8: oklch(0.55 0.06 265);                    /* slate   #607195 — «Прочее» */
+
+  /* Sidebar (shadcn) */
+  --sidebar: oklch(0.975 0.004 265);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: oklch(0.945 0.008 282);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  /* Тени (см. раздел 5) */
+  --shadow-xs: 0 1px 0 0 oklch(0.2 0.02 265 / 0.04);
+  --shadow-sm: 0 1px 2px oklch(0.2 0.02 265 / 0.06), 0 0 0 1px oklch(0.2 0.02 265 / 0.04);
+  --shadow-md: 0 4px 12px -2px oklch(0.2 0.02 265 / 0.08), 0 0 0 1px oklch(0.2 0.02 265 / 0.05);
+  --shadow-lg: 0 16px 40px -8px oklch(0.2 0.02 265 / 0.16), 0 0 0 1px oklch(0.2 0.02 265 / 0.06);
+  --shadow-focus: 0 0 0 3px oklch(0.52 0.20 282 / 0.22);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: oklch(0.165 0.008 265);               /* #0d0e12 */
+  --foreground: oklch(0.965 0.004 265);               /* #f2f3f6 */
+  --card: oklch(0.205 0.009 265);                     /* #15171b */
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.225 0.010 265);
+  --popover-foreground: var(--foreground);
+  --surface-2: oklch(0.235 0.010 265);                /* #1c1e23 */
+  --muted: oklch(0.25 0.009 265);                     /* #1f2226 */
+  --muted-foreground: oklch(0.72 0.012 265);          /* #a1a5ac, 7.2:1 на card */
+  --subtle-foreground: oklch(0.62 0.012 265);         /* #83868e, 4.9:1 */
+  --border: oklch(0.29 0.010 265);                    /* #292b30 */
+  --input: oklch(0.32 0.010 265);
+  --ring: oklch(0.70 0.16 282);
+
+  --primary: oklch(0.70 0.16 282);                    /* #908ffe, тёмный текст 6.9:1 */
+  --primary-foreground: oklch(0.17 0.02 282);
+  --primary-soft: oklch(0.27 0.06 282);               /* #222243 */
+  --secondary: oklch(0.25 0.009 265);
+  --secondary-foreground: var(--foreground);
+  --accent: oklch(0.27 0.02 282);
+  --accent-foreground: var(--foreground);
+
+  --expense: oklch(0.72 0.15 25);                     /* #f47b74 */
+  --expense-soft: oklch(0.26 0.045 25);               /* #371b19 */
+  --income: oklch(0.76 0.15 155);                     /* #52cd86 */
+  --income-soft: oklch(0.26 0.04 155);                /* #132a1b */
+  --transfer: oklch(0.74 0.10 240);                   /* #6db3e4 */
+  --transfer-soft: oklch(0.26 0.035 240);             /* #132633 */
+  --warning: oklch(0.80 0.14 75);                     /* #f2af48 */
+  --warning-soft: oklch(0.27 0.04 75);                /* #32230e */
+  --success: var(--income);
+  --destructive: oklch(0.68 0.19 25);                 /* #f75d59 */
+  --destructive-foreground: oklch(0.17 0.02 25);
+
+  --chart-1: oklch(0.70 0.16 282);                    /* #908ffe */
+  --chart-2: oklch(0.76 0.12 200);                    /* #30c8cf */
+  --chart-3: oklch(0.76 0.15 50);                     /* #fc9252 */
+  --chart-4: oklch(0.74 0.15 150);                    /* #5ac576 */
+  --chart-5: oklch(0.72 0.17 350);                    /* #f072b3 */
+  --chart-6: oklch(0.84 0.15 90);                     /* #f0c543 */
+  --chart-7: oklch(0.68 0.13 250);                    /* #549de5 */
+  --chart-8: oklch(0.66 0.03 265);                    /* #8992a5 */
+
+  --sidebar: oklch(0.185 0.008 265);
+  --sidebar-accent: oklch(0.25 0.015 282);
+  --sidebar-border: var(--border);
+
+  --shadow-xs: 0 1px 0 0 oklch(1 0 0 / 0.03) inset;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.4), 0 0 0 1px oklch(1 0 0 / 0.05);
+  --shadow-md: 0 6px 16px -4px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.06);
+  --shadow-lg: 0 20px 48px -8px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.08);
+  --shadow-focus: 0 0 0 3px oklch(0.70 0.16 282 / 0.30);
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-surface-2: var(--surface-2);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-expense: var(--expense);
+  --color-expense-soft: var(--expense-soft);
+  --color-income: var(--income);
+  --color-income-soft: var(--income-soft);
+  --color-transfer: var(--transfer);
+  --color-transfer-soft: var(--transfer-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-success: var(--success);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-xs: calc(var(--radius) - 8px);             /* 4px  — чекбокс, kbd */
+  --radius-sm: calc(var(--radius) - 4px);             /* 8px  — кнопки, инпуты, чипы */
+  --radius-md: calc(var(--radius) - 2px);             /* 10px — поповеры, строка AI внутри окна */
+  --radius-lg: var(--radius);                         /* 12px — карточки */
+  --radius-xl: calc(var(--radius) + 4px);             /* 16px — AI-строка на главной, шиты */
+  --radius-2xl: calc(var(--radius) + 8px);            /* 20px — окно Quick Capture, мобильные шиты */
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11";                    /* Inter: одноярусная a — см. 2.2 */
+    font-size: 14px; line-height: 20px;
+  }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum", "cv11"; letter-spacing: -0.01em; }
+  ::selection { background: color-mix(in oklch, var(--primary) 22%, transparent); }
+}
+
+/* ---- DESIGN §7.1 motion tokens */
+:root {
+  --dur-instant: 80ms;
+  --dur-fast: 140ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+}
+
+/* ---- DESIGN §2.3 type scale */
+@utility text-display { font-size: 32px; line-height: 36px; letter-spacing: -0.02em; font-weight: 600; }
+@utility text-title-1 { font-size: 24px; line-height: 30px; letter-spacing: -0.015em; font-weight: 600; }
+@utility text-title-2 { font-size: 18px; line-height: 24px; letter-spacing: -0.01em; font-weight: 600; }
+@utility text-title-3 { font-size: 15px; line-height: 20px; font-weight: 600; }
+@utility text-body { font-size: 14px; line-height: 20px; }
+@utility text-input-ai { font-size: 16px; line-height: 24px; }
+@utility text-small { font-size: 13px; line-height: 18px; }
+@utility text-caption { font-size: 12px; line-height: 16px; font-weight: 500; }
+@utility text-micro { font-size: 11px; line-height: 14px; font-weight: 500; }
+
+/* ---- safe areas (PWA standalone on iOS) */
+@utility pt-safe { padding-top: env(safe-area-inset-top); }
+@utility pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+@utility h-bottom-nav { height: calc(64px + env(safe-area-inset-bottom)); }
+
+/* ---- §6 materials: translucent only for floating chrome */
+@utility material-bar {
+  background-color: color-mix(in oklch, var(--background) 80%, transparent);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+}
+@utility material-nav {
+  background-color: color-mix(in oklch, var(--card) 85%, transparent);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .material-bar { background-color: var(--background); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .material-nav { background-color: var(--card); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* ---- §7.2.8 skeleton pulse: synchronous opacity 0.55 ↔ 1, 1.4 s */
+@keyframes pf-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+@utility pf-pulse { animation: pf-pulse 1.4s var(--ease-in-out) infinite; }
+
+/* ---- §7.2.4 error «no-nod» */
+@keyframes pf-shake {
+  0%, 100% { transform: translateX(0); }
+  16% { transform: translateX(-4px); } 33% { transform: translateX(4px); }
+  50% { transform: translateX(-4px); } 66% { transform: translateX(4px); }
+  83% { transform: translateX(-4px); }
+}
+@utility pf-shake { animation: pf-shake 280ms var(--ease-in-out); }
+
+/* ---- new row highlight (fades over 1.2 s) */
+@keyframes pf-highlight { from { background-color: var(--primary-soft); } to { background-color: transparent; } }
+@utility pf-highlight { animation: pf-highlight 1.2s var(--ease-out); }
+
+@keyframes pf-card-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@utility pf-card-in { animation: pf-card-in var(--dur-base) var(--ease-out); }
+@keyframes pf-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@utility pf-fade-in { animation: pf-fade-in var(--dur-fast) var(--ease-out); }
+
+/* ---- §7.3 reduced motion safety net */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+  .pf-pulse { animation: none; }
+}
+
+/* textarea autosize where supported (DESIGN §9.1) */
+.pf-autosize { field-sizing: content; }
+
+/* touch devices: hide keyboard hints (§11) */
+@media (hover: none) {
+  .pf-kbd { display: none !important; }
+}

@@ -1,0 +1,119 @@
+# Release: on a tag v* build the desktop apps and attach them to the GitHub release.
+#   Windows — NSIS installer (x64), built natively on a Windows runner;
+#   macOS   — dmg + zip for Apple Silicon (arm64), ad-hoc signed (no Apple Developer ID).
+# The apps have no built-in server address: the first launch asks for it. To bake one in for
+# your own builds, set the repository variable PF_DEFAULT_SERVER_URL.
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+env:
+  PNPM_VERSION: "12.15.0"
+  NODE_VERSION: "22"
+
+jobs:
+  create:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Create the release (or reuse an existing one)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
+            || gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" \
+                 --title "Pocket $GITHUB_REF_NAME" --generate-notes
+
+  windows:
+    needs: create
+    runs-on: windows-2025
+    timeout-minutes: 40
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
+    env:
+      PF_DEFAULT_SERVER_URL: ${{ vars.PF_DEFAULT_SERVER_URL }}
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install
+        run: pnpm --dir desktop install --frozen-lockfile
+      - name: Renderer (web build for the desktop)
+        run: pnpm --dir desktop build:renderer
+      - name: Unit tests
+        run: pnpm --dir desktop exec vitest run
+      - name: Build the installer
+        run: pnpm --dir desktop dist:win
+      - name: Upload to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd desktop/release
+          sha256sum ./*.exe > SHA256SUMS-windows.txt
+          cat SHA256SUMS-windows.txt
+          gh release upload "$GITHUB_REF_NAME" ./*.exe SHA256SUMS-windows.txt --repo "$GITHUB_REPOSITORY" --clobber
+
+  macos:
+    needs: create
+    runs-on: macos-15
+    timeout-minutes: 40
+    permissions:
+      contents: write
+    env:
+      PF_DEFAULT_SERVER_URL: ${{ vars.PF_DEFAULT_SERVER_URL }}
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install
+        run: pnpm --dir desktop install --frozen-lockfile
+      - name: Renderer (web build for the desktop)
+        run: pnpm --dir desktop build:renderer
+      - name: Unit tests
+        run: pnpm --dir desktop exec vitest run
+      - name: Build dmg + zip (Apple Silicon)
+        run: pnpm --dir desktop dist:mac
+      - name: Verify the bundle
+        run: |
+          APP="desktop/release/mac-arm64/Pocket.app"
+          lipo -archs "$APP/Contents/MacOS/Pocket"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          /usr/libexec/PlistBuddy -c "Print :LSUIElement" "$APP/Contents/Info.plist"
+      - name: Smoke launch (the process must stay alive for 20 s)
+        run: |
+          "desktop/release/mac-arm64/Pocket.app/Contents/MacOS/Pocket" > /tmp/pocket.log 2>&1 &
+          PID=$!
+          sleep 20
+          if kill -0 "$PID"; then echo "alive"; kill "$PID"; else cat /tmp/pocket.log; exit 1; fi
+      - name: Upload to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd desktop/release
+          shasum -a 256 ./*.dmg ./*.zip > SHA256SUMS-macos.txt
+          cat SHA256SUMS-macos.txt
+          gh release upload "$GITHUB_REF_NAME" ./*.dmg ./*.zip SHA256SUMS-macos.txt --repo "$GITHUB_REPOSITORY" --clobber

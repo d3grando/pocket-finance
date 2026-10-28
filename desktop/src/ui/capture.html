@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pocket</title>
+  </head>
+  <body>
+    <div id="root" class="qc">
+      <div class="header">
+        <span class="brand"><span class="logo"></span>Pocket</span>
+        <span class="spacer"></span>
+        <span class="dot" id="dot"></span>
+        <span class="caption num" id="sync"></span>
+        <button class="icon-btn" id="full" title="Полная панель (Ctrl+Shift+F)" aria-label="Полная панель">⧉</button>
+        <button class="icon-btn" id="settings" title="Настройки" aria-label="Настройки">⋯</button>
+      </div>
+      <div class="banner hidden" id="offline" role="status">
+        <span>Нет связи с сервером. Записи не сохраняются.</span>
+      </div>
+      <div class="bar" id="bar">
+        <span class="spark" aria-hidden="true">✦</span>
+        <textarea id="input" rows="1" placeholder="На что потратил деньги?" aria-label="На что потратил деньги?" spellcheck="false" autofocus></textarea>
+        <span class="spinner hidden" id="spinner" aria-hidden="true"></span>
+      </div>
+      <div class="edit-hint hidden" id="edit-hint">
+        <span id="edit-text">Изменяю операцию</span>
+        <button class="link" id="edit-cancel">отмена</button>
+      </div>
+      <div id="result" aria-live="polite"></div>
+      <div id="info">
+        <div class="kpis">
+          <div class="kpi"><div class="caption">Сегодня</div><div class="kpi-v num" id="kpi-today">—</div></div>
+          <div class="kpi"><div class="caption">Месяц</div><div class="kpi-v num" id="kpi-month">—</div></div>
+          <div class="kpi"><div class="caption">Доходы</div><div class="kpi-v num income" id="kpi-income">—</div></div>
+        </div>
+        <div class="caption recent-label">Последние <span id="stale"></span></div>
+        <ul class="recent" id="recent"></ul>
+      </div>
+      <div class="footer">
+        <button class="link hidden" id="needs">Разобрать 0</button>
+        <span class="spacer"></span>
+        <button class="link" id="full2">Полная панель</button>
+        <span class="caption"><kbd>⏎</kbd> отправить · <kbd>⇧⏎</kbd> строка · <kbd>Esc</kbd> скрыть</span>
+      </div>
+    </div>
+    <script type="module" src="./capture.ts"></script>
+  </body>
+</html>

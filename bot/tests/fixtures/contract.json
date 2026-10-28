@@ -1,0 +1,3884 @@
+{
+ "accounts": [
+  {
+   "aliases": [
+    "карта"
+   ],
+   "assets": [],
+   "color": null,
+   "currency": "VND",
+   "default_for_currencies": [
+    "VND"
+   ],
+   "icon": null,
+   "id": 1,
+   "is_archived": false,
+   "is_multi_asset": false,
+   "kind": "bank",
+   "name": "Карта",
+   "sort_order": 1,
+   "version": 1
+  },
+  {
+   "aliases": [
+    "Кошелёк"
+   ],
+   "assets": [
+    {
+     "approx_usd": null,
+     "approx_vnd": null,
+     "asset": "USDT",
+     "balance": "85",
+     "opening_at": null,
+     "opening_balance": "100"
+    }
+   ],
+   "color": null,
+   "currency": null,
+   "default_for_currencies": [],
+   "icon": null,
+   "id": 3,
+   "is_archived": false,
+   "is_multi_asset": true,
+   "kind": "crypto_wallet",
+   "name": "Кошелёк",
+   "sort_order": 3,
+   "version": 1
+  },
+  {
+   "aliases": [],
+   "assets": [],
+   "color": null,
+   "currency": null,
+   "default_for_currencies": [],
+   "icon": null,
+   "id": 4,
+   "is_archived": false,
+   "is_multi_asset": true,
+   "kind": "crypto_wallet",
+   "name": "Копилка",
+   "sort_order": 4,
+   "version": 1
+  },
+  {
+   "aliases": [],
+   "assets": [],
+   "color": null,
+   "currency": "RUB",
+   "default_for_currencies": [
+    "RUB"
+   ],
+   "icon": null,
+   "id": 7,
+   "is_archived": false,
+   "is_multi_asset": false,
+   "kind": "card",
+   "name": "Карта RUB",
+   "sort_order": 7,
+   "version": 1
+  }
+ ],
+ "actions_recent": [
+  {
+   "created_at": "2026-10-27T07:32:05Z",
+   "entity_refs": [
+    {
+     "id": 101,
+     "type": "transaction"
+    }
+   ],
+   "id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+   "input_text": "еда 150к",
+   "is_undoable": true,
+   "kind": "create_transaction",
+   "source": "telegram",
+   "summary": "Еда 150 000 ₫",
+   "undone_at": null
+  }
+ ],
+ "answer": {
+  "action_ids": [],
+  "ai_available": true,
+  "cards": [
+   {
+    "answer_type": "stats",
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "open",
+       "prefill": null,
+       "preview_token": null,
+       "route": "/analytics?period=today",
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "open",
+      "label": "Открыть в аналитике →",
+      "style": "ghost"
+     }
+    ],
+    "debts": null,
+    "filter": null,
+    "headline": "−595 000 ₫",
+    "headline_approx": "≈ $22.76",
+    "kind": "answer",
+    "lines": [
+     {
+      "amount": "320000",
+      "category_id": 1,
+      "currency": "VND",
+      "icon": "UtensilsCrossed",
+      "label": "Еда",
+      "share": 0.54,
+      "transaction_id": null,
+      "value": "320 000 ₫"
+     },
+     {
+      "amount": "120000",
+      "category_id": 4,
+      "currency": "VND",
+      "icon": "CarTaxiFront",
+      "label": "Такси/транспорт",
+      "share": 0.2,
+      "transaction_id": null,
+      "value": "120 000 ₫"
+     },
+     {
+      "amount": null,
+      "category_id": 99,
+      "currency": null,
+      "icon": null,
+      "label": "<script>",
+      "share": null,
+      "transaction_id": null,
+      "value": "85 000 ₫"
+     }
+    ],
+    "subtitle": null,
+    "text": null,
+    "title": "Сегодня потрачено",
+    "total_count": 5,
+    "transactions": []
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "answer_debts": {
+  "action_ids": [],
+  "ai_available": true,
+  "cards": [
+   {
+    "answer_type": "balance",
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "open",
+       "prefill": null,
+       "preview_token": null,
+       "route": "/accounts?debt=all",
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "open",
+      "label": "Открыть долги →",
+      "style": "ghost"
+     }
+    ],
+    "debts": {
+     "i_owe": [
+      {
+       "account_id": 42,
+       "aliases": [],
+       "balances": [
+        {
+         "amount": "-1000000",
+         "approx_usd": "38.3",
+         "approx_vnd": "1000000",
+         "currency": "VND",
+         "direction": "i_owe",
+         "open_since": "2026-10-20"
+        }
+       ],
+       "created_at": "2026-10-27T07:32:05Z",
+       "handle": null,
+       "id": 7,
+       "is_archived": false,
+       "last_activity_on": "2026-10-20",
+       "name": "Петя",
+       "note": null,
+       "remind_snoozed_until": null,
+       "status": "i_owe",
+       "version": 1
+      },
+      {
+       "account_id": 44,
+       "aliases": [],
+       "balances": [
+        {
+         "amount": "-200000",
+         "approx_usd": "7.6",
+         "approx_vnd": "200000",
+         "currency": "VND",
+         "direction": "i_owe",
+         "open_since": "2026-10-25"
+        }
+       ],
+       "created_at": "2026-10-27T07:32:05Z",
+       "handle": null,
+       "id": 8,
+       "is_archived": false,
+       "last_activity_on": "2026-10-20",
+       "name": "Лена <b>",
+       "note": null,
+       "remind_snoozed_until": null,
+       "status": "mixed",
+       "version": 1
+      }
+     ],
+     "owed_to_me": [
+      {
+       "account_id": 41,
+       "aliases": [
+        "коле",
+        "коли"
+       ],
+       "balances": [
+        {
+         "amount": "300000",
+         "approx_usd": "11.48",
+         "approx_vnd": "300000",
+         "currency": "VND",
+         "direction": "owed_to_me",
+         "open_since": "2026-09-27"
+        }
+       ],
+       "created_at": "2026-10-27T07:32:05Z",
+       "handle": null,
+       "id": 5,
+       "is_archived": false,
+       "last_activity_on": "2026-10-20",
+       "name": "Коля",
+       "note": null,
+       "remind_snoozed_until": null,
+       "status": "owed_to_me",
+       "version": 1
+      },
+      {
+       "account_id": 43,
+       "aliases": [],
+       "balances": [
+        {
+         "amount": "50",
+         "approx_usd": "50",
+         "approx_vnd": "1310000",
+         "currency": "USDT",
+         "direction": "owed_to_me",
+         "open_since": "2026-10-24"
+        }
+       ],
+       "created_at": "2026-10-27T07:32:05Z",
+       "handle": null,
+       "id": 6,
+       "is_archived": false,
+       "last_activity_on": "2026-10-20",
+       "name": "Вася",
+       "note": null,
+       "remind_snoozed_until": null,
+       "status": "owed_to_me",
+       "version": 1
+      },
+      {
+       "account_id": 44,
+       "aliases": [],
+       "balances": [
+        {
+         "amount": "100",
+         "approx_usd": "100",
+         "approx_vnd": "2620000",
+         "currency": "USDT",
+         "direction": "owed_to_me",
+         "open_since": "2026-10-27"
+        }
+       ],
+       "created_at": "2026-10-27T07:32:05Z",
+       "handle": null,
+       "id": 8,
+       "is_archived": false,
+       "last_activity_on": "2026-10-20",
+       "name": "Лена <b>",
+       "note": null,
+       "remind_snoozed_until": null,
+       "status": "mixed",
+       "version": 1
+      }
+     ],
+     "settled": [],
+     "totals": {
+      "i_owe_count": 2,
+      "i_owe_usd": "45.9",
+      "i_owe_vnd": "1200000",
+      "missing_rates": false,
+      "owed_to_me_count": 3,
+      "owed_to_me_usd": "161.48",
+      "owed_to_me_vnd": "4230000"
+     }
+    },
+    "filter": null,
+    "headline": "Мне должны ≈ 4 230 000 ₫",
+    "headline_approx": "≈ $161.48",
+    "kind": "answer",
+    "lines": [
+     {
+      "amount": null,
+      "category_id": null,
+      "currency": null,
+      "icon": "HandCoins",
+      "label": "Коля",
+      "share": null,
+      "transaction_id": null,
+      "value": "долг тебе 300 000 ₫"
+     },
+     {
+      "amount": null,
+      "category_id": null,
+      "currency": null,
+      "icon": "HandCoins",
+      "label": "Вася",
+      "share": null,
+      "transaction_id": null,
+      "value": "долг тебе 50 USDT"
+     },
+     {
+      "amount": null,
+      "category_id": null,
+      "currency": null,
+      "icon": "HandCoins",
+      "label": "Петя",
+      "share": null,
+      "transaction_id": null,
+      "value": "ты должен 1 000 000 ₫"
+     }
+    ],
+    "subtitle": null,
+    "text": "Я должен ≈ 1 200 000 ₫",
+    "title": "Долги",
+    "total_count": null,
+    "transactions": []
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "applied": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000003"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000003",
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000003",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     }
+    ],
+    "count": 3,
+    "kind": "applied",
+    "subtitle": null,
+    "title": "Изменено 3 операции"
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "balance": {
+  "action_ids": [],
+  "ai_available": true,
+  "cards": [
+   {
+    "account": {
+     "aliases": [],
+     "assets": [],
+     "color": null,
+     "currency": "VND",
+     "default_for_currencies": [
+      "VND"
+     ],
+     "icon": null,
+     "id": 1,
+     "is_archived": false,
+     "is_multi_asset": false,
+     "kind": "bank",
+     "name": "Карта",
+     "sort_order": 1,
+     "version": 1
+    },
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     }
+    ],
+    "kind": "balance",
+    "result": "adjusted",
+    "subtitle": "корректировка −120 000 ₫",
+    "title": "Карта: 5 200 000 ₫",
+    "transaction": null
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "by_category_today": {
+  "currency": "VND",
+  "items": [
+   {
+    "amount": "320000",
+    "category_id": 1,
+    "color": null,
+    "count": 1,
+    "icon": null,
+    "is_business": false,
+    "is_new": false,
+    "name": "Еда",
+    "share": "0.538"
+   },
+   {
+    "amount": "120000",
+    "category_id": 2,
+    "color": null,
+    "count": 1,
+    "icon": null,
+    "is_business": false,
+    "is_new": false,
+    "name": "Такси/транспорт",
+    "share": "0.202"
+   },
+   {
+    "amount": "85000",
+    "category_id": 3,
+    "color": null,
+    "count": 1,
+    "icon": null,
+    "is_business": false,
+    "is_new": false,
+    "name": "Кофе",
+    "share": "0.143"
+   },
+   {
+    "amount": "40000",
+    "category_id": 4,
+    "color": null,
+    "count": 1,
+    "icon": null,
+    "is_business": false,
+    "is_new": false,
+    "name": "Подписки",
+    "share": "0.067"
+   },
+   {
+    "amount": "30000",
+    "category_id": 5,
+    "color": null,
+    "count": 1,
+    "icon": null,
+    "is_business": false,
+    "is_new": false,
+    "name": "Связь",
+    "share": "0.05"
+   }
+  ],
+  "kind": "expense",
+  "range": {
+   "date_from": "2026-10-27",
+   "date_to": "2026-10-27",
+   "label": "Сегодня"
+  },
+  "total": "595000"
+ },
+ "created": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000001"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "approx": null,
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "edit",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 101
+      },
+      "hotkey": null,
+      "id": "edit",
+      "label": "Изменить",
+      "style": "ghost"
+     }
+    ],
+    "category_is_new": false,
+    "debt": null,
+    "kind": "created",
+    "note": null,
+    "subtitle": "Карта · сегодня, 14:32",
+    "title": "150 000 ₫ · Еда",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 1,
+      "name": "Карта"
+     },
+     "account_amount": "150000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "150000",
+     "amount_usd": null,
+     "amount_vnd": "150000",
+     "category": {
+      "color": null,
+      "icon": null,
+      "id": 1,
+      "is_business": false,
+      "is_new": false,
+      "kind": "expense",
+      "name": "Еда"
+     },
+     "counter_account": null,
+     "counter_amount": null,
+     "counter_asset": null,
+     "counterparty": null,
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": null,
+     "description": null,
+     "id": 101,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "expense",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Еда",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "created_debt_excess": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000002"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+    "approx": null,
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "send_text",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": "списать мой долг: Коля 100к",
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "excess",
+      "label": "Излишек — мне",
+      "style": "outline"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "edit",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 402
+      },
+      "hotkey": null,
+      "id": "edit",
+      "label": "Изменить",
+      "style": "ghost"
+     }
+    ],
+    "category_is_new": false,
+    "debt": {
+     "balance_after": "-100000",
+     "currency": "VND",
+     "debt_id": 5,
+     "excess": "100000",
+     "name": "Коля",
+     "op": "repay_in"
+    },
+    "kind": "created",
+    "note": "Излишек 100 000 ₫ — теперь ты должен: Коля",
+    "subtitle": "Карта · долг закрыт",
+    "title": "400 000 ₫ · Возврат долга: Коля",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 41,
+      "name": "Долг: Коля"
+     },
+     "account_amount": "200000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "400000",
+     "amount_usd": null,
+     "amount_vnd": "200000",
+     "category": null,
+     "counter_account": {
+      "icon": "HandCoins",
+      "id": 1,
+      "name": "Карта"
+     },
+     "counter_amount": "200000",
+     "counter_asset": "VND",
+     "counterparty": "Коля",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": {
+      "id": 5,
+      "name": "Коля",
+      "op": "repay_in"
+     },
+     "description": null,
+     "id": 402,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "transfer",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-20",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Возврат долга: Коля",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "created_debt_lend": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000001"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "approx": null,
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "edit",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 401
+      },
+      "hotkey": null,
+      "id": "edit",
+      "label": "Изменить",
+      "style": "ghost"
+     }
+    ],
+    "category_is_new": false,
+    "debt": {
+     "balance_after": "500000",
+     "currency": "VND",
+     "debt_id": 5,
+     "excess": null,
+     "name": "Коля",
+     "op": "lend"
+    },
+    "kind": "created",
+    "note": null,
+    "subtitle": "Карта · Коля: долг тебе 500 000 ₫",
+    "title": "500 000 ₫ · Дал в долг: Коля",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 1,
+      "name": "Карта"
+     },
+     "account_amount": "500000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "500000",
+     "amount_usd": null,
+     "amount_vnd": "500000",
+     "category": null,
+     "counter_account": {
+      "icon": "HandCoins",
+      "id": 41,
+      "name": "Долг: Коля"
+     },
+     "counter_amount": "500000",
+     "counter_asset": "VND",
+     "counterparty": "Коля",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": {
+      "id": 5,
+      "name": "Коля",
+      "op": "lend"
+     },
+     "description": null,
+     "id": 401,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "transfer",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Дал в долг: Коля",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "created_many": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+   "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+   "6b0c0d3e-1111-4a2b-9c3d-000000000003"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_ids": [
+     "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+     "6b0c0d3e-1111-4a2b-9c3d-000000000003"
+    ],
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo-0",
+      "label": "Отменить все",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo-1",
+      "label": "Отменить все",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000003",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo-2",
+      "label": "Отменить все",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "edit",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "edit",
+      "label": "Изменить",
+      "style": "ghost"
+     }
+    ],
+    "kind": "created_many",
+    "subtitle": null,
+    "title": "3 операции · −195 000 ₫",
+    "total": "195000",
+    "total_currency": "VND",
+    "transactions": [
+     {
+      "account": {
+       "icon": "Landmark",
+       "id": 1,
+       "name": "Карта"
+      },
+      "account_amount": "120000",
+      "account_asset": "VND",
+      "account_rate": null,
+      "amount": "120000",
+      "amount_usd": null,
+      "amount_vnd": "120000",
+      "category": {
+       "color": null,
+       "icon": null,
+       "id": 1,
+       "is_business": false,
+       "is_new": false,
+       "kind": "expense",
+       "name": "Еда"
+      },
+      "counter_account": null,
+      "counter_amount": null,
+      "counter_asset": null,
+      "counterparty": null,
+      "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+      "created_at": "2026-10-27T07:32:05Z",
+      "currency": "VND",
+      "debt": null,
+      "description": null,
+      "id": 201,
+      "is_business": false,
+      "is_estimated": false,
+      "kind": "expense",
+      "merchant": null,
+      "occurred_at": "2026-10-27T07:32:05Z",
+      "occurred_on": "2026-10-27",
+      "rate_date": null,
+      "rate_source": null,
+      "raw_text": null,
+      "recurring_id": null,
+      "refund_of_id": null,
+      "source": "telegram",
+      "status": "posted",
+      "title": "Еда",
+      "updated_at": "2026-10-27T07:32:05Z",
+      "usd_rate": null,
+      "version": 1
+     },
+     {
+      "account": {
+       "icon": "Landmark",
+       "id": 1,
+       "name": "Карта"
+      },
+      "account_amount": "45000",
+      "account_asset": "VND",
+      "account_rate": null,
+      "amount": "45000",
+      "amount_usd": null,
+      "amount_vnd": "45000",
+      "category": {
+       "color": null,
+       "icon": null,
+       "id": 4,
+       "is_business": false,
+       "is_new": false,
+       "kind": "expense",
+       "name": "Такси/транспорт"
+      },
+      "counter_account": null,
+      "counter_amount": null,
+      "counter_asset": null,
+      "counterparty": null,
+      "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+      "created_at": "2026-10-27T07:32:05Z",
+      "currency": "VND",
+      "debt": null,
+      "description": null,
+      "id": 202,
+      "is_business": false,
+      "is_estimated": false,
+      "kind": "expense",
+      "merchant": null,
+      "occurred_at": "2026-10-27T07:32:05Z",
+      "occurred_on": "2026-10-27",
+      "rate_date": null,
+      "rate_source": null,
+      "raw_text": null,
+      "recurring_id": null,
+      "refund_of_id": null,
+      "source": "telegram",
+      "status": "posted",
+      "title": "Такси",
+      "updated_at": "2026-10-27T07:32:05Z",
+      "usd_rate": null,
+      "version": 1
+     },
+     {
+      "account": {
+       "icon": "Landmark",
+       "id": 1,
+       "name": "Карта"
+      },
+      "account_amount": "30000",
+      "account_asset": "VND",
+      "account_rate": null,
+      "amount": "30000",
+      "amount_usd": null,
+      "amount_vnd": "30000",
+      "category": {
+       "color": null,
+       "icon": null,
+       "id": 3,
+       "is_business": false,
+       "is_new": false,
+       "kind": "expense",
+       "name": "Кофе"
+      },
+      "counter_account": null,
+      "counter_amount": null,
+      "counter_asset": null,
+      "counterparty": null,
+      "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000003",
+      "created_at": "2026-10-27T07:32:05Z",
+      "currency": "VND",
+      "debt": null,
+      "description": null,
+      "id": 203,
+      "is_business": false,
+      "is_estimated": false,
+      "kind": "expense",
+      "merchant": null,
+      "occurred_at": "2026-10-27T07:32:05Z",
+      "occurred_on": "2026-10-27",
+      "rate_date": null,
+      "rate_source": null,
+      "raw_text": null,
+      "recurring_id": null,
+      "refund_of_id": null,
+      "source": "telegram",
+      "status": "posted",
+      "title": "Кофе",
+      "updated_at": "2026-10-27T07:32:05Z",
+      "usd_rate": null,
+      "version": 1
+     }
+    ]
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "created_new_category": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000001"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "approx": "≈ $16.20",
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "change_category",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 124
+      },
+      "hotkey": null,
+      "id": "change-category",
+      "label": "В другую",
+      "style": "outline"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "edit",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 124
+      },
+      "hotkey": null,
+      "id": "edit",
+      "label": "Изменить",
+      "style": "ghost"
+     }
+    ],
+    "category_is_new": true,
+    "debt": null,
+    "kind": "created",
+    "note": "Запомню: @alice → Софт и AI",
+    "subtitle": "Кошелёк · @alice · «аккаунт GPT Pro»",
+    "title": "3 TON · Софт и AI 🆕",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 3,
+      "name": "Кошелёк"
+     },
+     "account_amount": "3",
+     "account_asset": "TON",
+     "account_rate": null,
+     "amount": "3",
+     "amount_usd": "16.2",
+     "amount_vnd": null,
+     "category": {
+      "color": null,
+      "icon": null,
+      "id": 15,
+      "is_business": false,
+      "is_new": true,
+      "kind": "expense",
+      "name": "Софт и AI 🆕"
+     },
+     "counter_account": null,
+     "counter_amount": null,
+     "counter_asset": null,
+     "counterparty": "@alice",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "TON",
+     "debt": null,
+     "description": "аккаунт GPT Pro",
+     "id": 124,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "expense",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Софт и AI · @alice",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "llm"
+ },
+ "debt_detail": {
+  "debt": {
+   "account_id": 41,
+   "aliases": [
+    "коле",
+    "коли"
+   ],
+   "balances": [
+    {
+     "amount": "300000",
+     "approx_usd": "11.48",
+     "approx_vnd": "300000",
+     "currency": "VND",
+     "direction": "owed_to_me",
+     "open_since": "2026-09-27"
+    }
+   ],
+   "created_at": "2026-10-27T07:32:05Z",
+   "handle": null,
+   "id": 5,
+   "is_archived": false,
+   "last_activity_on": "2026-10-20",
+   "name": "Коля",
+   "note": null,
+   "remind_snoozed_until": null,
+   "status": "owed_to_me",
+   "version": 1
+  },
+  "history": [
+   {
+    "balance_after": "300000",
+    "currency": "VND",
+    "delta": "-200000",
+    "op": "repay_in",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 41,
+      "name": "Долг: Коля"
+     },
+     "account_amount": "200000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "200000",
+     "amount_usd": null,
+     "amount_vnd": "200000",
+     "category": null,
+     "counter_account": {
+      "icon": "HandCoins",
+      "id": 1,
+      "name": "Карта"
+     },
+     "counter_amount": "200000",
+     "counter_asset": "VND",
+     "counterparty": "Коля",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": {
+      "id": 5,
+      "name": "Коля",
+      "op": "repay_in"
+     },
+     "description": null,
+     "id": 402,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "transfer",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-20",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Возврат долга: Коля",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   },
+   {
+    "balance_after": "500000",
+    "currency": "VND",
+    "delta": "500000",
+    "op": "lend",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 1,
+      "name": "Карта"
+     },
+     "account_amount": "500000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "500000",
+     "amount_usd": null,
+     "amount_vnd": "500000",
+     "category": null,
+     "counter_account": {
+      "icon": "HandCoins",
+      "id": 41,
+      "name": "Долг: Коля"
+     },
+     "counter_amount": "500000",
+     "counter_asset": "VND",
+     "counterparty": "Коля",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": {
+      "id": 5,
+      "name": "Коля",
+      "op": "lend"
+     },
+     "description": null,
+     "id": 401,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "transfer",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-09-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Дал в долг: Коля",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "last_action_id": null,
+  "limit": 10,
+  "offset": 0,
+  "total": 2
+ },
+ "debt_detail_petya": {
+  "debt": {
+   "account_id": 42,
+   "aliases": [],
+   "balances": [
+    {
+     "amount": "-1000000",
+     "approx_usd": "38.3",
+     "approx_vnd": "1000000",
+     "currency": "VND",
+     "direction": "i_owe",
+     "open_since": "2026-10-20"
+    }
+   ],
+   "created_at": "2026-10-27T07:32:05Z",
+   "handle": null,
+   "id": 7,
+   "is_archived": false,
+   "last_activity_on": "2026-10-20",
+   "name": "Петя",
+   "note": null,
+   "remind_snoozed_until": null,
+   "status": "i_owe",
+   "version": 1
+  },
+  "history": [
+   {
+    "balance_after": "-1000000",
+    "currency": "VND",
+    "delta": "-1000000",
+    "op": "borrow",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 42,
+      "name": "Долг: Петя"
+     },
+     "account_amount": "1000000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "1000000",
+     "amount_usd": null,
+     "amount_vnd": "1000000",
+     "category": null,
+     "counter_account": {
+      "icon": "HandCoins",
+      "id": 1,
+      "name": "Карта"
+     },
+     "counter_amount": "1000000",
+     "counter_asset": "VND",
+     "counterparty": "Петя",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": {
+      "id": 7,
+      "name": "Петя",
+      "op": "borrow"
+     },
+     "description": null,
+     "id": 405,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "transfer",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-20",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Занял: Петя",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "last_action_id": null,
+  "limit": 10,
+  "offset": 0,
+  "total": 1
+ },
+ "debt_detail_settled": {
+  "debt": {
+   "account_id": 41,
+   "aliases": [],
+   "balances": [],
+   "created_at": "2026-10-27T07:32:05Z",
+   "handle": null,
+   "id": 5,
+   "is_archived": false,
+   "last_activity_on": "2026-10-20",
+   "name": "Коля",
+   "note": null,
+   "remind_snoozed_until": null,
+   "status": "settled",
+   "version": 4
+  },
+  "history": [
+   {
+    "balance_after": "0",
+    "currency": "VND",
+    "delta": "-300000",
+    "op": "forgive",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 41,
+      "name": "Долг: Коля"
+     },
+     "account_amount": "300000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "300000",
+     "amount_usd": null,
+     "amount_vnd": "300000",
+     "category": {
+      "color": null,
+      "icon": null,
+      "id": 20,
+      "is_business": false,
+      "is_new": false,
+      "kind": "expense",
+      "name": "Переводы людям"
+     },
+     "counter_account": null,
+     "counter_amount": null,
+     "counter_asset": null,
+     "counterparty": "Коля",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000003",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": {
+      "id": 5,
+      "name": "Коля",
+      "op": "forgive"
+     },
+     "description": null,
+     "id": 404,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "expense",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Списан долг: Коля",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "last_action_id": null,
+  "limit": 10,
+  "offset": 0,
+  "total": 3
+ },
+ "debt_snoozed": {
+  "account_id": 41,
+  "aliases": [],
+  "balances": [
+   {
+    "amount": "300000",
+    "approx_usd": "11.48",
+    "approx_vnd": "300000",
+    "currency": "VND",
+    "direction": "owed_to_me",
+    "open_since": "2026-09-27"
+   }
+  ],
+  "created_at": "2026-10-27T07:32:05Z",
+  "handle": null,
+  "id": 5,
+  "is_archived": false,
+  "last_activity_on": "2026-10-20",
+  "name": "Коля",
+  "note": null,
+  "remind_snoozed_until": "2026-11-03",
+  "status": "owed_to_me",
+  "version": 2
+ },
+ "debts_empty": {
+  "i_owe": [],
+  "owed_to_me": [],
+  "settled": [],
+  "totals": {
+   "i_owe_count": 0,
+   "i_owe_usd": null,
+   "i_owe_vnd": null,
+   "missing_rates": false,
+   "owed_to_me_count": 0,
+   "owed_to_me_usd": null,
+   "owed_to_me_vnd": null
+  }
+ },
+ "debts_list": {
+  "i_owe": [
+   {
+    "account_id": 42,
+    "aliases": [],
+    "balances": [
+     {
+      "amount": "-1000000",
+      "approx_usd": "38.3",
+      "approx_vnd": "1000000",
+      "currency": "VND",
+      "direction": "i_owe",
+      "open_since": "2026-10-20"
+     }
+    ],
+    "created_at": "2026-10-27T07:32:05Z",
+    "handle": null,
+    "id": 7,
+    "is_archived": false,
+    "last_activity_on": "2026-10-20",
+    "name": "Петя",
+    "note": null,
+    "remind_snoozed_until": null,
+    "status": "i_owe",
+    "version": 1
+   },
+   {
+    "account_id": 44,
+    "aliases": [],
+    "balances": [
+     {
+      "amount": "-200000",
+      "approx_usd": "7.6",
+      "approx_vnd": "200000",
+      "currency": "VND",
+      "direction": "i_owe",
+      "open_since": "2026-10-25"
+     }
+    ],
+    "created_at": "2026-10-27T07:32:05Z",
+    "handle": null,
+    "id": 8,
+    "is_archived": false,
+    "last_activity_on": "2026-10-20",
+    "name": "Лена <b>",
+    "note": null,
+    "remind_snoozed_until": null,
+    "status": "mixed",
+    "version": 1
+   }
+  ],
+  "owed_to_me": [
+   {
+    "account_id": 41,
+    "aliases": [
+     "коле",
+     "коли"
+    ],
+    "balances": [
+     {
+      "amount": "300000",
+      "approx_usd": "11.48",
+      "approx_vnd": "300000",
+      "currency": "VND",
+      "direction": "owed_to_me",
+      "open_since": "2026-09-27"
+     }
+    ],
+    "created_at": "2026-10-27T07:32:05Z",
+    "handle": null,
+    "id": 5,
+    "is_archived": false,
+    "last_activity_on": "2026-10-20",
+    "name": "Коля",
+    "note": null,
+    "remind_snoozed_until": null,
+    "status": "owed_to_me",
+    "version": 1
+   },
+   {
+    "account_id": 43,
+    "aliases": [],
+    "balances": [
+     {
+      "amount": "50",
+      "approx_usd": "50",
+      "approx_vnd": "1310000",
+      "currency": "USDT",
+      "direction": "owed_to_me",
+      "open_since": "2026-10-24"
+     }
+    ],
+    "created_at": "2026-10-27T07:32:05Z",
+    "handle": null,
+    "id": 6,
+    "is_archived": false,
+    "last_activity_on": "2026-10-20",
+    "name": "Вася",
+    "note": null,
+    "remind_snoozed_until": null,
+    "status": "owed_to_me",
+    "version": 1
+   },
+   {
+    "account_id": 44,
+    "aliases": [],
+    "balances": [
+     {
+      "amount": "100",
+      "approx_usd": "100",
+      "approx_vnd": "2620000",
+      "currency": "USDT",
+      "direction": "owed_to_me",
+      "open_since": "2026-10-27"
+     }
+    ],
+    "created_at": "2026-10-27T07:32:05Z",
+    "handle": null,
+    "id": 8,
+    "is_archived": false,
+    "last_activity_on": "2026-10-20",
+    "name": "Лена <b>",
+    "note": null,
+    "remind_snoozed_until": null,
+    "status": "mixed",
+    "version": 1
+   }
+  ],
+  "settled": [],
+  "totals": {
+   "i_owe_count": 2,
+   "i_owe_usd": "45.9",
+   "i_owe_vnd": "1200000",
+   "missing_rates": false,
+   "owed_to_me_count": 3,
+   "owed_to_me_usd": "161.48",
+   "owed_to_me_vnd": "4230000"
+  }
+ },
+ "debts_vnd_only": {
+  "i_owe": [],
+  "owed_to_me": [
+   {
+    "account_id": 41,
+    "aliases": [
+     "коле",
+     "коли"
+    ],
+    "balances": [
+     {
+      "amount": "300000",
+      "approx_usd": "11.48",
+      "approx_vnd": "300000",
+      "currency": "VND",
+      "direction": "owed_to_me",
+      "open_since": "2026-09-27"
+     }
+    ],
+    "created_at": "2026-10-27T07:32:05Z",
+    "handle": null,
+    "id": 5,
+    "is_archived": false,
+    "last_activity_on": "2026-10-20",
+    "name": "Коля",
+    "note": null,
+    "remind_snoozed_until": null,
+    "status": "owed_to_me",
+    "version": 1
+   }
+  ],
+  "settled": [],
+  "totals": {
+   "i_owe_count": 0,
+   "i_owe_usd": null,
+   "i_owe_vnd": null,
+   "missing_rates": false,
+   "owed_to_me_count": 1,
+   "owed_to_me_usd": "11.48",
+   "owed_to_me_vnd": "300000"
+  }
+ },
+ "deleted": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000002"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Вернуть",
+      "style": "ghost"
+     }
+    ],
+    "kind": "deleted",
+    "subtitle": null,
+    "title": "150 000 ₫ · Еда",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 1,
+      "name": "Карта"
+     },
+     "account_amount": "150000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "150000",
+     "amount_usd": null,
+     "amount_vnd": "150000",
+     "category": {
+      "color": null,
+      "icon": null,
+      "id": 1,
+      "is_business": false,
+      "is_new": false,
+      "kind": "expense",
+      "name": "Еда"
+     },
+     "counter_account": null,
+     "counter_amount": null,
+     "counter_asset": null,
+     "counterparty": null,
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": null,
+     "description": null,
+     "id": 101,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "expense",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Еда",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "error_ai": {
+  "action_ids": [],
+  "ai_available": true,
+  "cards": [
+   {
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "manual",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "manual",
+      "label": "Вручную",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "retry",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "retry",
+      "label": "Повторить",
+      "style": "ghost"
+     }
+    ],
+    "code": "ai_unavailable",
+    "keep_input": true,
+    "kind": "error",
+    "subtitle": null,
+    "text": "Сложную фразу не разобрал. Ничего не записано.",
+    "title": "AI сейчас недоступен"
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "none"
+ },
+ "mutation_assign": {
+  "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+  "transaction": {
+   "account": {
+    "icon": null,
+    "id": 3,
+    "name": "Кошелёк"
+   },
+   "account_amount": "15",
+   "account_asset": "USDT",
+   "account_rate": null,
+   "amount": "15",
+   "amount_usd": "15",
+   "amount_vnd": null,
+   "category": {
+    "color": null,
+    "icon": null,
+    "id": 7,
+    "is_business": false,
+    "is_new": false,
+    "kind": "expense",
+    "name": "Подписки"
+   },
+   "counter_account": null,
+   "counter_amount": null,
+   "counter_asset": null,
+   "counterparty": null,
+   "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+   "created_at": "2026-10-27T07:32:05Z",
+   "currency": "USDT",
+   "debt": null,
+   "description": null,
+   "id": 125,
+   "is_business": false,
+   "is_estimated": false,
+   "kind": "expense",
+   "merchant": null,
+   "occurred_at": "2026-10-27T07:32:05Z",
+   "occurred_on": "2026-10-27",
+   "rate_date": null,
+   "rate_source": null,
+   "raw_text": null,
+   "recurring_id": null,
+   "refund_of_id": null,
+   "source": "telegram",
+   "status": "posted",
+   "title": "Подписки",
+   "updated_at": "2026-10-27T07:32:05Z",
+   "usd_rate": null,
+   "version": 1
+  }
+ },
+ "mutation_assign_debt_in": {
+  "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+  "transaction": {
+   "account": {
+    "icon": "Landmark",
+    "id": 43,
+    "name": "Долг: Вася"
+   },
+   "account_amount": "50",
+   "account_asset": "USDT",
+   "account_rate": null,
+   "amount": "50",
+   "amount_usd": "50",
+   "amount_vnd": null,
+   "category": null,
+   "counter_account": {
+    "icon": null,
+    "id": 3,
+    "name": "Кошелёк"
+   },
+   "counter_amount": "50",
+   "counter_asset": "USDT",
+   "counterparty": "Вася",
+   "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+   "created_at": "2026-10-27T07:32:05Z",
+   "currency": "USDT",
+   "debt": {
+    "id": 6,
+    "name": "Вася",
+    "op": "repay_in"
+   },
+   "description": null,
+   "id": 406,
+   "is_business": false,
+   "is_estimated": false,
+   "kind": "transfer",
+   "merchant": null,
+   "occurred_at": "2026-10-27T07:32:05Z",
+   "occurred_on": "2026-10-27",
+   "rate_date": null,
+   "rate_source": null,
+   "raw_text": null,
+   "recurring_id": null,
+   "refund_of_id": null,
+   "source": "telegram",
+   "status": "posted",
+   "title": "Возврат долга: Вася",
+   "updated_at": "2026-10-27T07:32:05Z",
+   "usd_rate": null,
+   "version": 1
+  }
+ },
+ "mutation_category": {
+  "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000003",
+  "transaction": {
+   "account": {
+    "icon": "Landmark",
+    "id": 3,
+    "name": "Кошелёк"
+   },
+   "account_amount": "3",
+   "account_asset": "TON",
+   "account_rate": null,
+   "amount": "3",
+   "amount_usd": "16.2",
+   "amount_vnd": null,
+   "category": {
+    "color": null,
+    "icon": null,
+    "id": 7,
+    "is_business": false,
+    "is_new": false,
+    "kind": "expense",
+    "name": "Подписки"
+   },
+   "counter_account": null,
+   "counter_amount": null,
+   "counter_asset": null,
+   "counterparty": "@alice",
+   "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+   "created_at": "2026-10-27T07:32:05Z",
+   "currency": "TON",
+   "debt": null,
+   "description": "аккаунт GPT Pro",
+   "id": 124,
+   "is_business": false,
+   "is_estimated": false,
+   "kind": "expense",
+   "merchant": null,
+   "occurred_at": "2026-10-27T07:32:05Z",
+   "occurred_on": "2026-10-27",
+   "rate_date": null,
+   "rate_source": null,
+   "raw_text": null,
+   "recurring_id": null,
+   "refund_of_id": null,
+   "source": "telegram",
+   "status": "posted",
+   "title": "Софт и AI · @alice",
+   "updated_at": "2026-10-27T07:32:05Z",
+   "usd_rate": null,
+   "version": 2
+  }
+ },
+ "needs_account": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000001"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "buttons": [
+     {
+      "action": {
+       "account_id": 3,
+       "action_id": null,
+       "category_id": null,
+       "kind": "choose_account",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 125
+      },
+      "hotkey": null,
+      "id": "acc-3",
+      "label": "Кошелёк",
+      "style": "outline"
+     },
+     {
+      "action": {
+       "account_id": 4,
+       "action_id": null,
+       "category_id": null,
+       "kind": "choose_account",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 125
+      },
+      "hotkey": null,
+      "id": "acc-4",
+      "label": "Копилка",
+      "style": "outline"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "choose_account",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 125
+      },
+      "hotkey": null,
+      "id": "acc-none",
+      "label": "Без счёта",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "later",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 125
+      },
+      "hotkey": null,
+      "id": "later",
+      "label": "Позже",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     }
+    ],
+    "debt": null,
+    "kind": "needs_account",
+    "options": [
+     {
+      "account_id": 3,
+      "hint": "есть USDT",
+      "hotkey": "1",
+      "label": "Кошелёк"
+     },
+     {
+      "account_id": 4,
+      "hint": null,
+      "hotkey": "2",
+      "label": "Копилка"
+     },
+     {
+      "account_id": null,
+      "hint": null,
+      "hotkey": "0",
+      "label": "Без счёта"
+     }
+    ],
+    "question": "С какого счёта?",
+    "subtitle": "≈ $15.00",
+    "title": "15 USDT · Подписки",
+    "transaction": {
+     "account": null,
+     "account_amount": null,
+     "account_asset": null,
+     "account_rate": null,
+     "amount": "15",
+     "amount_usd": "15",
+     "amount_vnd": null,
+     "category": {
+      "color": null,
+      "icon": null,
+      "id": 7,
+      "is_business": false,
+      "is_new": false,
+      "kind": "expense",
+      "name": "Подписки"
+     },
+     "counter_account": null,
+     "counter_amount": null,
+     "counter_asset": null,
+     "counterparty": null,
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "USDT",
+     "debt": null,
+     "description": null,
+     "id": 125,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "expense",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "needs_account",
+     "title": "Подписки",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "needs_account_debt": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000001"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "buttons": [
+     {
+      "action": {
+       "account_id": 3,
+       "action_id": null,
+       "category_id": null,
+       "kind": "choose_account",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 403
+      },
+      "hotkey": null,
+      "id": "acc-3",
+      "label": "Кошелёк",
+      "style": "outline"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "choose_account",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 403
+      },
+      "hotkey": null,
+      "id": "acc-none",
+      "label": "Без счёта",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "later",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 403
+      },
+      "hotkey": null,
+      "id": "later",
+      "label": "Позже",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     }
+    ],
+    "debt": {
+     "balance_after": "50",
+     "currency": "USDT",
+     "debt_id": 6,
+     "excess": null,
+     "name": "Вася",
+     "op": "lend"
+    },
+    "kind": "needs_account",
+    "options": [
+     {
+      "account_id": 3,
+      "hint": "есть USDT",
+      "hotkey": "1",
+      "label": "Кошелёк"
+     },
+     {
+      "account_id": null,
+      "hint": null,
+      "hotkey": "0",
+      "label": "Без счёта"
+     }
+    ],
+    "question": "С какого счёта?",
+    "subtitle": "Вася: долг тебе 50 USDT · ≈ $50.00",
+    "title": "50 USDT · Дал в долг: Вася",
+    "transaction": {
+     "account": null,
+     "account_amount": null,
+     "account_asset": null,
+     "account_rate": null,
+     "amount": "50",
+     "amount_usd": "50",
+     "amount_vnd": null,
+     "category": null,
+     "counter_account": {
+      "icon": "HandCoins",
+      "id": 43,
+      "name": "Долг: Вася"
+     },
+     "counter_amount": "50",
+     "counter_asset": "USDT",
+     "counterparty": "Вася",
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "USDT",
+     "debt": {
+      "id": 6,
+      "name": "Вася",
+      "op": "lend"
+     },
+     "description": null,
+     "id": 403,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "transfer",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "needs_account",
+     "title": "Дал в долг: Вася",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "outbox_claim": {
+  "items": [
+   {
+    "attempts": 0,
+    "id": 11,
+    "kind": "recurring_reminder",
+    "payload": {
+     "buttons": [
+      [
+       {
+        "callback": "r:2",
+        "text": "✅ Записать"
+       },
+       {
+        "callback": "k:2",
+        "text": "⏭ Пропустить"
+       }
+      ],
+      [
+       {
+        "callback": "m:2",
+        "text": "✏️ Другая сумма"
+       }
+      ]
+     ],
+     "parse_mode": "HTML",
+     "text": "⏰ Сегодня обычно платишь\n<b>Аренда</b> — 11 000 000 ₫ · Карта"
+    },
+    "telegram_user_id": 123456789
+   },
+   {
+    "attempts": 0,
+    "id": 12,
+    "kind": "report_monthly",
+    "payload": {
+     "buttons": [
+      [
+       {
+        "callback": "o:analytics_last_month",
+        "text": "📊 Подробно"
+       },
+       {
+        "callback": "i",
+        "text": "📥 Разобрать"
+       }
+      ]
+     ],
+     "parse_mode": "HTML",
+     "text": "🗓 <b>Октябрь 2026</b>"
+    },
+    "telegram_user_id": 123456789
+   },
+   {
+    "attempts": 0,
+    "id": 13,
+    "kind": "info",
+    "payload": {
+     "buttons": [],
+     "parse_mode": "HTML",
+     "text": "чужой"
+    },
+    "telegram_user_id": 111
+   }
+  ]
+ },
+ "outbox_debt_reminder": {
+  "items": [
+   {
+    "attempts": 0,
+    "id": 21,
+    "kind": "debt_reminder",
+    "payload": {
+     "buttons": [
+      [
+       {
+        "callback": "dr:5",
+        "text": "Записать возврат"
+       },
+       {
+        "callback": "dz:5",
+        "text": "Напомнить позже"
+       }
+      ]
+     ],
+     "parse_mode": "HTML",
+     "text": "⏰ Коля должен 300 000 ₫ уже 30 дней"
+    },
+    "telegram_user_id": 123456789
+   },
+   {
+    "attempts": 0,
+    "id": 22,
+    "kind": "debt_reminder",
+    "payload": {
+     "buttons": [
+      [
+       {
+        "callback": "dr:7",
+        "text": "Записать возврат"
+       },
+       {
+        "callback": "dz:7",
+        "text": "Напомнить позже"
+       }
+      ]
+     ],
+     "parse_mode": "HTML",
+     "text": "⏰ Твой долг · Петя: 1 000 000 ₫ уже 30 дней"
+    },
+    "telegram_user_id": 123456789
+   }
+  ]
+ },
+ "page_last": {
+  "items": [
+   {
+    "account": {
+     "icon": "Landmark",
+     "id": 1,
+     "name": "Карта"
+    },
+    "account_amount": "150000",
+    "account_asset": "VND",
+    "account_rate": null,
+    "amount": "150000",
+    "amount_usd": null,
+    "amount_vnd": "150000",
+    "category": {
+     "color": null,
+     "icon": null,
+     "id": 1,
+     "is_business": false,
+     "is_new": false,
+     "kind": "expense",
+     "name": "Еда"
+    },
+    "counter_account": null,
+    "counter_amount": null,
+    "counter_asset": null,
+    "counterparty": null,
+    "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "created_at": "2026-10-27T07:32:05Z",
+    "currency": "VND",
+    "debt": null,
+    "description": null,
+    "id": 101,
+    "is_business": false,
+    "is_estimated": false,
+    "kind": "expense",
+    "merchant": null,
+    "occurred_at": "2026-10-27T07:32:05Z",
+    "occurred_on": "2026-10-27",
+    "rate_date": null,
+    "rate_source": null,
+    "raw_text": null,
+    "recurring_id": null,
+    "refund_of_id": null,
+    "source": "telegram",
+    "status": "posted",
+    "title": "Еда",
+    "updated_at": "2026-10-27T07:32:05Z",
+    "usd_rate": null,
+    "version": 1
+   },
+   {
+    "account": {
+     "icon": "Landmark",
+     "id": 3,
+     "name": "Кошелёк"
+    },
+    "account_amount": "3",
+    "account_asset": "TON",
+    "account_rate": null,
+    "amount": "3",
+    "amount_usd": "16.2",
+    "amount_vnd": null,
+    "category": {
+     "color": null,
+     "icon": null,
+     "id": 15,
+     "is_business": false,
+     "is_new": true,
+     "kind": "expense",
+     "name": "Софт и AI 🆕"
+    },
+    "counter_account": null,
+    "counter_amount": null,
+    "counter_asset": null,
+    "counterparty": "@alice",
+    "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "created_at": "2026-10-27T07:32:05Z",
+    "currency": "TON",
+    "debt": null,
+    "description": "аккаунт GPT Pro",
+    "id": 124,
+    "is_business": false,
+    "is_estimated": false,
+    "kind": "expense",
+    "merchant": null,
+    "occurred_at": "2026-10-27T07:32:05Z",
+    "occurred_on": "2026-10-27",
+    "rate_date": null,
+    "rate_source": null,
+    "raw_text": null,
+    "recurring_id": null,
+    "refund_of_id": null,
+    "source": "telegram",
+    "status": "posted",
+    "title": "Софт и AI · @alice",
+    "updated_at": "2026-10-27T07:32:05Z",
+    "usd_rate": null,
+    "version": 1
+   },
+   {
+    "account": {
+     "icon": "Landmark",
+     "id": 3,
+     "name": "Кошелёк"
+    },
+    "account_amount": "300",
+    "account_asset": "USDT",
+    "account_rate": null,
+    "amount": "300",
+    "amount_usd": null,
+    "amount_vnd": null,
+    "category": {
+     "color": null,
+     "icon": null,
+     "id": 1,
+     "is_business": false,
+     "is_new": false,
+     "kind": "income",
+     "name": "Клиенты"
+    },
+    "counter_account": null,
+    "counter_amount": null,
+    "counter_asset": null,
+    "counterparty": null,
+    "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "created_at": "2026-10-27T07:32:05Z",
+    "currency": "USDT",
+    "debt": null,
+    "description": null,
+    "id": 150,
+    "is_business": false,
+    "is_estimated": false,
+    "kind": "income",
+    "merchant": null,
+    "occurred_at": "2026-10-27T07:32:05Z",
+    "occurred_on": "2026-10-27",
+    "rate_date": null,
+    "rate_source": null,
+    "raw_text": null,
+    "recurring_id": null,
+    "refund_of_id": null,
+    "source": "telegram",
+    "status": "posted",
+    "title": "Клиенты",
+    "updated_at": "2026-10-27T07:32:05Z",
+    "usd_rate": null,
+    "version": 1
+   }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 42,
+  "totals": {
+   "count": 42,
+   "expense_usd": "22",
+   "expense_vnd": "150000",
+   "income_usd": "300",
+   "income_vnd": "0"
+  }
+ },
+ "page_last_debts": {
+  "items": [
+   {
+    "account": {
+     "icon": "Landmark",
+     "id": 41,
+     "name": "Долг: Коля"
+    },
+    "account_amount": "300000",
+    "account_asset": "VND",
+    "account_rate": null,
+    "amount": "300000",
+    "amount_usd": null,
+    "amount_vnd": "300000",
+    "category": {
+     "color": null,
+     "icon": null,
+     "id": 20,
+     "is_business": false,
+     "is_new": false,
+     "kind": "expense",
+     "name": "Переводы людям"
+    },
+    "counter_account": null,
+    "counter_amount": null,
+    "counter_asset": null,
+    "counterparty": "Коля",
+    "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000003",
+    "created_at": "2026-10-27T07:32:05Z",
+    "currency": "VND",
+    "debt": {
+     "id": 5,
+     "name": "Коля",
+     "op": "forgive"
+    },
+    "description": null,
+    "id": 404,
+    "is_business": false,
+    "is_estimated": false,
+    "kind": "expense",
+    "merchant": null,
+    "occurred_at": "2026-10-27T07:32:05Z",
+    "occurred_on": "2026-10-27",
+    "rate_date": null,
+    "rate_source": null,
+    "raw_text": null,
+    "recurring_id": null,
+    "refund_of_id": null,
+    "source": "telegram",
+    "status": "posted",
+    "title": "Списан долг: Коля",
+    "updated_at": "2026-10-27T07:32:05Z",
+    "usd_rate": null,
+    "version": 1
+   },
+   {
+    "account": {
+     "icon": "Landmark",
+     "id": 41,
+     "name": "Долг: Коля"
+    },
+    "account_amount": "200000",
+    "account_asset": "VND",
+    "account_rate": null,
+    "amount": "200000",
+    "amount_usd": null,
+    "amount_vnd": "200000",
+    "category": null,
+    "counter_account": {
+     "icon": "HandCoins",
+     "id": 1,
+     "name": "Карта"
+    },
+    "counter_amount": "200000",
+    "counter_asset": "VND",
+    "counterparty": "Коля",
+    "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+    "created_at": "2026-10-27T07:32:05Z",
+    "currency": "VND",
+    "debt": {
+     "id": 5,
+     "name": "Коля",
+     "op": "repay_in"
+    },
+    "description": null,
+    "id": 402,
+    "is_business": false,
+    "is_estimated": false,
+    "kind": "transfer",
+    "merchant": null,
+    "occurred_at": "2026-10-27T07:32:05Z",
+    "occurred_on": "2026-10-20",
+    "rate_date": null,
+    "rate_source": null,
+    "raw_text": null,
+    "recurring_id": null,
+    "refund_of_id": null,
+    "source": "telegram",
+    "status": "posted",
+    "title": "Возврат долга: Коля",
+    "updated_at": "2026-10-27T07:32:05Z",
+    "usd_rate": null,
+    "version": 1
+   },
+   {
+    "account": {
+     "icon": "Landmark",
+     "id": 1,
+     "name": "Карта"
+    },
+    "account_amount": "500000",
+    "account_asset": "VND",
+    "account_rate": null,
+    "amount": "500000",
+    "amount_usd": null,
+    "amount_vnd": "500000",
+    "category": null,
+    "counter_account": {
+     "icon": "HandCoins",
+     "id": 41,
+     "name": "Долг: Коля"
+    },
+    "counter_amount": "500000",
+    "counter_asset": "VND",
+    "counterparty": "Коля",
+    "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "created_at": "2026-10-27T07:32:05Z",
+    "currency": "VND",
+    "debt": {
+     "id": 5,
+     "name": "Коля",
+     "op": "lend"
+    },
+    "description": null,
+    "id": 401,
+    "is_business": false,
+    "is_estimated": false,
+    "kind": "transfer",
+    "merchant": null,
+    "occurred_at": "2026-10-27T07:32:05Z",
+    "occurred_on": "2026-09-27",
+    "rate_date": null,
+    "rate_source": null,
+    "raw_text": null,
+    "recurring_id": null,
+    "refund_of_id": null,
+    "source": "telegram",
+    "status": "posted",
+    "title": "Дал в долг: Коля",
+    "updated_at": "2026-10-27T07:32:05Z",
+    "usd_rate": null,
+    "version": 1
+   }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 3,
+  "totals": {
+   "count": 3,
+   "expense_usd": "11.48",
+   "expense_vnd": "300000",
+   "income_usd": "0",
+   "income_vnd": "0"
+  }
+ },
+ "page_needs_account": {
+  "items": [
+   {
+    "account": null,
+    "account_amount": null,
+    "account_asset": null,
+    "account_rate": null,
+    "amount": "15",
+    "amount_usd": "15",
+    "amount_vnd": null,
+    "category": {
+     "color": null,
+     "icon": null,
+     "id": 7,
+     "is_business": false,
+     "is_new": false,
+     "kind": "expense",
+     "name": "Подписки"
+    },
+    "counter_account": null,
+    "counter_amount": null,
+    "counter_asset": null,
+    "counterparty": null,
+    "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+    "created_at": "2026-10-27T07:32:05Z",
+    "currency": "USDT",
+    "debt": null,
+    "description": null,
+    "id": 125,
+    "is_business": false,
+    "is_estimated": false,
+    "kind": "expense",
+    "merchant": null,
+    "occurred_at": "2026-10-27T07:32:05Z",
+    "occurred_on": "2026-10-27",
+    "rate_date": null,
+    "rate_source": null,
+    "raw_text": null,
+    "recurring_id": null,
+    "refund_of_id": null,
+    "source": "telegram",
+    "status": "needs_account",
+    "title": "Подписки",
+    "updated_at": "2026-10-27T07:32:05Z",
+    "usd_rate": null,
+    "version": 1
+   }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 1,
+  "totals": {
+   "count": 1,
+   "expense_usd": "15",
+   "expense_vnd": "0",
+   "income_usd": "0",
+   "income_vnd": "0"
+  }
+ },
+ "preview": {
+  "action_ids": [],
+  "ai_available": true,
+  "cards": [
+   {
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "cancel_preview",
+       "prefill": null,
+       "preview_token": "8d2e1f50-3333-4c4d-9e5f-000000000001",
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "cancel",
+      "label": "Отмена",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "confirm_preview",
+       "prefill": null,
+       "preview_token": "8d2e1f50-3333-4c4d-9e5f-000000000001",
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "confirm",
+      "label": "Применить",
+      "style": "primary"
+     }
+    ],
+    "change_summary": "категория: Прочее → Кофе",
+    "expires_at": "2026-10-27T07:42:05Z",
+    "items": [
+     {
+      "after": "Кофе",
+      "before": "Прочее",
+      "transaction": {
+       "account": {
+        "icon": "Landmark",
+        "id": 1,
+        "name": "Карта"
+       },
+       "account_amount": "45000",
+       "account_asset": "VND",
+       "account_rate": null,
+       "amount": "45000",
+       "amount_usd": null,
+       "amount_vnd": "45000",
+       "category": {
+        "color": null,
+        "icon": null,
+        "id": 12,
+        "is_business": false,
+        "is_new": false,
+        "kind": "expense",
+        "name": "Прочее"
+       },
+       "counter_account": null,
+       "counter_amount": null,
+       "counter_asset": null,
+       "counterparty": null,
+       "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "created_at": "2026-10-27T07:32:05Z",
+       "currency": "VND",
+       "debt": null,
+       "description": null,
+       "id": 301,
+       "is_business": false,
+       "is_estimated": false,
+       "kind": "expense",
+       "merchant": {
+        "id": 9,
+        "name": "Highlands"
+       },
+       "occurred_at": "2026-10-27T07:32:05Z",
+       "occurred_on": "2026-10-21",
+       "rate_date": null,
+       "rate_source": null,
+       "raw_text": null,
+       "recurring_id": null,
+       "refund_of_id": null,
+       "source": "telegram",
+       "status": "posted",
+       "title": "Прочее",
+       "updated_at": "2026-10-27T07:32:05Z",
+       "usd_rate": null,
+       "version": 1
+      }
+     },
+     {
+      "after": "Кофе",
+      "before": "Прочее",
+      "transaction": {
+       "account": {
+        "icon": "Landmark",
+        "id": 1,
+        "name": "Карта"
+       },
+       "account_amount": "52000",
+       "account_asset": "VND",
+       "account_rate": null,
+       "amount": "52000",
+       "amount_usd": null,
+       "amount_vnd": "52000",
+       "category": {
+        "color": null,
+        "icon": null,
+        "id": 12,
+        "is_business": false,
+        "is_new": false,
+        "kind": "expense",
+        "name": "Прочее"
+       },
+       "counter_account": null,
+       "counter_amount": null,
+       "counter_asset": null,
+       "counterparty": null,
+       "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "created_at": "2026-10-27T07:32:05Z",
+       "currency": "VND",
+       "debt": null,
+       "description": null,
+       "id": 302,
+       "is_business": false,
+       "is_estimated": false,
+       "kind": "expense",
+       "merchant": {
+        "id": 9,
+        "name": "Highlands"
+       },
+       "occurred_at": "2026-10-27T07:32:05Z",
+       "occurred_on": "2026-10-22",
+       "rate_date": null,
+       "rate_source": null,
+       "raw_text": null,
+       "recurring_id": null,
+       "refund_of_id": null,
+       "source": "telegram",
+       "status": "posted",
+       "title": "Прочее",
+       "updated_at": "2026-10-27T07:32:05Z",
+       "usd_rate": null,
+       "version": 1
+      }
+     },
+     {
+      "after": "Кофе",
+      "before": "Прочее",
+      "transaction": {
+       "account": {
+        "icon": "Landmark",
+        "id": 1,
+        "name": "Карта"
+       },
+       "account_amount": "39000",
+       "account_asset": "VND",
+       "account_rate": null,
+       "amount": "39000",
+       "amount_usd": null,
+       "amount_vnd": "39000",
+       "category": {
+        "color": null,
+        "icon": null,
+        "id": 12,
+        "is_business": false,
+        "is_new": false,
+        "kind": "expense",
+        "name": "Прочее"
+       },
+       "counter_account": null,
+       "counter_amount": null,
+       "counter_asset": null,
+       "counterparty": null,
+       "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+       "created_at": "2026-10-27T07:32:05Z",
+       "currency": "VND",
+       "debt": null,
+       "description": null,
+       "id": 303,
+       "is_business": false,
+       "is_estimated": false,
+       "kind": "expense",
+       "merchant": {
+        "id": 9,
+        "name": "Phúc Long"
+       },
+       "occurred_at": "2026-10-27T07:32:05Z",
+       "occurred_on": "2026-10-23",
+       "rate_date": null,
+       "rate_source": null,
+       "raw_text": null,
+       "recurring_id": null,
+       "refund_of_id": null,
+       "source": "telegram",
+       "status": "posted",
+       "title": "Прочее",
+       "updated_at": "2026-10-27T07:32:05Z",
+       "usd_rate": null,
+       "version": 1
+      }
+     }
+    ],
+    "kind": "preview",
+    "operation": "bulk_update",
+    "preview_token": "8d2e1f50-3333-4c4d-9e5f-000000000001",
+    "subtitle": null,
+    "title": "Изменю 3 операции",
+    "total": "Итого 136 000 ₫",
+    "total_count": 3
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "llm"
+ },
+ "recurring": [
+  {
+   "account_id": 1,
+   "amount": "11000000",
+   "category_id": 5,
+   "currency": "VND",
+   "day_of_month": 5,
+   "description": null,
+   "frequency": "monthly",
+   "id": 2,
+   "interval": 1,
+   "is_active": true,
+   "kind": "expense",
+   "last_reminded_on": "2026-10-05",
+   "merchant_id": null,
+   "month": null,
+   "next_due_on": "2026-11-05",
+   "remind_time": "10:00:00",
+   "title": "Аренда",
+   "version": 4,
+   "weekday": null
+  }
+ ],
+ "report_monthly": {
+  "kind": "monthly",
+  "range": {
+   "date_from": "2026-10-01",
+   "date_to": "2026-10-31",
+   "label": "Октябрь 2026"
+  },
+  "text_html": "🗓 <b>Октябрь 2026</b>\n\nРасходы −12 450 000 ₫",
+  "text_plain": "Октябрь 2026. Расходы −12 450 000 ₫"
+ },
+ "settings": {
+  "analytics_currency": "USD",
+  "debt_reminder_days": 30,
+  "debt_reminders_enabled": false,
+  "default_currency": "VND",
+  "desktop_hotkey": "Ctrl+Alt+Space",
+  "onboarding_done": true,
+  "reminders_enabled": true,
+  "report_daily": false,
+  "report_daily_time": "22:00:00",
+  "report_monthly": true,
+  "report_time": "10:00:00",
+  "report_weekly": false,
+  "report_weekly_day": 6,
+  "report_weekly_time": "21:00:00",
+  "small_amount_thousands": true,
+  "summary_currency": "VND",
+  "telegram_user_id": 123456789,
+  "theme": "system",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "version": 3
+ },
+ "suggest": {
+  "all": [
+   {
+    "aliases": [],
+    "color": null,
+    "icon": null,
+    "id": 7,
+    "is_archived": false,
+    "is_business": false,
+    "is_new": false,
+    "is_system": true,
+    "kind": "expense",
+    "name": "Подписки",
+    "sort_order": 7,
+    "tx_count": null,
+    "version": 1
+   },
+   {
+    "aliases": [],
+    "color": null,
+    "icon": null,
+    "id": 14,
+    "is_archived": false,
+    "is_business": true,
+    "is_new": false,
+    "is_system": true,
+    "kind": "expense",
+    "name": "Серверы/инфра",
+    "sort_order": 14,
+    "tx_count": null,
+    "version": 1
+   },
+   {
+    "aliases": [],
+    "color": null,
+    "icon": null,
+    "id": 16,
+    "is_archived": false,
+    "is_business": true,
+    "is_new": false,
+    "is_system": true,
+    "kind": "expense",
+    "name": "Закупка товара",
+    "sort_order": 16,
+    "tx_count": null,
+    "version": 1
+   },
+   {
+    "aliases": [],
+    "color": null,
+    "icon": null,
+    "id": 1,
+    "is_archived": false,
+    "is_business": false,
+    "is_new": false,
+    "is_system": true,
+    "kind": "expense",
+    "name": "Еда",
+    "sort_order": 1,
+    "tx_count": null,
+    "version": 1
+   },
+   {
+    "aliases": [],
+    "color": null,
+    "icon": null,
+    "id": 3,
+    "is_archived": false,
+    "is_business": false,
+    "is_new": false,
+    "is_system": true,
+    "kind": "expense",
+    "name": "Кофе",
+    "sort_order": 3,
+    "tx_count": null,
+    "version": 1
+   },
+   {
+    "aliases": [],
+    "color": null,
+    "icon": null,
+    "id": 12,
+    "is_archived": false,
+    "is_business": false,
+    "is_new": false,
+    "is_system": true,
+    "kind": "expense",
+    "name": "Прочее",
+    "sort_order": 12,
+    "tx_count": null,
+    "version": 1
+   },
+   {
+    "aliases": [],
+    "color": null,
+    "icon": null,
+    "id": 9,
+    "is_archived": false,
+    "is_business": false,
+    "is_new": false,
+    "is_system": true,
+    "kind": "expense",
+    "name": "Покупки",
+    "sort_order": 9,
+    "tx_count": null,
+    "version": 1
+   }
+  ],
+  "similar": [
+   {
+    "category": {
+     "aliases": [],
+     "color": null,
+     "icon": null,
+     "id": 7,
+     "is_archived": false,
+     "is_business": false,
+     "is_new": false,
+     "is_system": true,
+     "kind": "expense",
+     "name": "Подписки",
+     "sort_order": 7,
+     "tx_count": null,
+     "version": 1
+    },
+    "score": 0.81
+   },
+   {
+    "category": {
+     "aliases": [],
+     "color": null,
+     "icon": null,
+     "id": 14,
+     "is_archived": false,
+     "is_business": true,
+     "is_new": false,
+     "is_system": true,
+     "kind": "expense",
+     "name": "Серверы/инфра",
+     "sort_order": 14,
+     "tx_count": null,
+     "version": 1
+    },
+    "score": 0.6
+   }
+  ]
+ },
+ "summary": {
+  "currency": "VND",
+  "income_month": {
+   "approx_usd": "700",
+   "change_ratio": null,
+   "currency": "VND",
+   "sparkline": [],
+   "value": "18300000"
+  },
+  "missing_rates_count": 0,
+  "month": {
+   "date_from": "2026-10-01",
+   "date_to": "2026-10-31",
+   "label": "Октябрь 2026"
+  },
+  "needs_account_count": 2,
+  "net_month": {
+   "approx_usd": "223.8",
+   "change_ratio": null,
+   "currency": "VND",
+   "sparkline": [],
+   "value": "5850000"
+  },
+  "spent_month": {
+   "approx_usd": "476.3",
+   "change_ratio": "0.12",
+   "currency": "VND",
+   "sparkline": [],
+   "value": "12450000"
+  },
+  "spent_today": {
+   "approx_usd": "22.76",
+   "change_ratio": null,
+   "currency": "VND",
+   "sparkline": [],
+   "value": "595000"
+  },
+  "today": {
+   "date_from": "2026-10-27",
+   "date_to": "2026-10-27",
+   "label": "Сегодня"
+  }
+ },
+ "tx_debt_in_needs_account": {
+  "account": {
+   "icon": "Landmark",
+   "id": 43,
+   "name": "Долг: Вася"
+  },
+  "account_amount": "50",
+  "account_asset": "USDT",
+  "account_rate": null,
+  "amount": "50",
+  "amount_usd": "50",
+  "amount_vnd": null,
+  "category": null,
+  "counter_account": null,
+  "counter_amount": null,
+  "counter_asset": null,
+  "counterparty": "Вася",
+  "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+  "created_at": "2026-10-27T07:32:05Z",
+  "currency": "USDT",
+  "debt": {
+   "id": 6,
+   "name": "Вася",
+   "op": "repay_in"
+  },
+  "description": null,
+  "id": 406,
+  "is_business": false,
+  "is_estimated": false,
+  "kind": "transfer",
+  "merchant": null,
+  "occurred_at": "2026-10-27T07:32:05Z",
+  "occurred_on": "2026-10-27",
+  "rate_date": null,
+  "rate_source": null,
+  "raw_text": null,
+  "recurring_id": null,
+  "refund_of_id": null,
+  "source": "telegram",
+  "status": "needs_account",
+  "title": "Возврат долга: Вася",
+  "updated_at": "2026-10-27T07:32:05Z",
+  "usd_rate": null,
+  "version": 1
+ },
+ "tx_debt_lend_usdt": {
+  "account": null,
+  "account_amount": null,
+  "account_asset": null,
+  "account_rate": null,
+  "amount": "50",
+  "amount_usd": "50",
+  "amount_vnd": null,
+  "category": null,
+  "counter_account": {
+   "icon": "HandCoins",
+   "id": 43,
+   "name": "Долг: Вася"
+  },
+  "counter_amount": "50",
+  "counter_asset": "USDT",
+  "counterparty": "Вася",
+  "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+  "created_at": "2026-10-27T07:32:05Z",
+  "currency": "USDT",
+  "debt": {
+   "id": 6,
+   "name": "Вася",
+   "op": "lend"
+  },
+  "description": null,
+  "id": 403,
+  "is_business": false,
+  "is_estimated": false,
+  "kind": "transfer",
+  "merchant": null,
+  "occurred_at": "2026-10-27T07:32:05Z",
+  "occurred_on": "2026-10-27",
+  "rate_date": null,
+  "rate_source": null,
+  "raw_text": null,
+  "recurring_id": null,
+  "refund_of_id": null,
+  "source": "telegram",
+  "status": "needs_account",
+  "title": "Дал в долг: Вася",
+  "updated_at": "2026-10-27T07:32:05Z",
+  "usd_rate": null,
+  "version": 1
+ },
+ "tx_food": {
+  "account": {
+   "icon": "Landmark",
+   "id": 1,
+   "name": "Карта"
+  },
+  "account_amount": "150000",
+  "account_asset": "VND",
+  "account_rate": null,
+  "amount": "150000",
+  "amount_usd": null,
+  "amount_vnd": "150000",
+  "category": {
+   "color": null,
+   "icon": null,
+   "id": 1,
+   "is_business": false,
+   "is_new": false,
+   "kind": "expense",
+   "name": "Еда"
+  },
+  "counter_account": null,
+  "counter_amount": null,
+  "counter_asset": null,
+  "counterparty": null,
+  "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+  "created_at": "2026-10-27T07:32:05Z",
+  "currency": "VND",
+  "debt": null,
+  "description": null,
+  "id": 101,
+  "is_business": false,
+  "is_estimated": false,
+  "kind": "expense",
+  "merchant": null,
+  "occurred_at": "2026-10-27T07:32:05Z",
+  "occurred_on": "2026-10-27",
+  "rate_date": null,
+  "rate_source": null,
+  "raw_text": null,
+  "recurring_id": null,
+  "refund_of_id": null,
+  "source": "telegram",
+  "status": "posted",
+  "title": "Еда",
+  "updated_at": "2026-10-27T07:32:05Z",
+  "usd_rate": null,
+  "version": 1
+ },
+ "tx_ton": {
+  "account": {
+   "icon": "Landmark",
+   "id": 3,
+   "name": "Кошелёк"
+  },
+  "account_amount": "3",
+  "account_asset": "TON",
+  "account_rate": null,
+  "amount": "3",
+  "amount_usd": "16.2",
+  "amount_vnd": null,
+  "category": {
+   "color": null,
+   "icon": null,
+   "id": 15,
+   "is_business": false,
+   "is_new": true,
+   "kind": "expense",
+   "name": "Софт и AI 🆕"
+  },
+  "counter_account": null,
+  "counter_amount": null,
+  "counter_asset": null,
+  "counterparty": "@alice",
+  "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+  "created_at": "2026-10-27T07:32:05Z",
+  "currency": "TON",
+  "debt": null,
+  "description": "аккаунт GPT Pro",
+  "id": 124,
+  "is_business": false,
+  "is_estimated": false,
+  "kind": "expense",
+  "merchant": null,
+  "occurred_at": "2026-10-27T07:32:05Z",
+  "occurred_on": "2026-10-27",
+  "rate_date": null,
+  "rate_source": null,
+  "raw_text": null,
+  "recurring_id": null,
+  "refund_of_id": null,
+  "source": "telegram",
+  "status": "posted",
+  "title": "Софт и AI · @alice",
+  "updated_at": "2026-10-27T07:32:05Z",
+  "usd_rate": null,
+  "version": 1
+ },
+ "tx_usdt": {
+  "account": null,
+  "account_amount": null,
+  "account_asset": null,
+  "account_rate": null,
+  "amount": "15",
+  "amount_usd": "15",
+  "amount_vnd": null,
+  "category": {
+   "color": null,
+   "icon": null,
+   "id": 7,
+   "is_business": false,
+   "is_new": false,
+   "kind": "expense",
+   "name": "Подписки"
+  },
+  "counter_account": null,
+  "counter_amount": null,
+  "counter_asset": null,
+  "counterparty": null,
+  "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+  "created_at": "2026-10-27T07:32:05Z",
+  "currency": "USDT",
+  "debt": null,
+  "description": null,
+  "id": 125,
+  "is_business": false,
+  "is_estimated": false,
+  "kind": "expense",
+  "merchant": null,
+  "occurred_at": "2026-10-27T07:32:05Z",
+  "occurred_on": "2026-10-27",
+  "rate_date": null,
+  "rate_source": null,
+  "raw_text": null,
+  "recurring_id": null,
+  "refund_of_id": null,
+  "source": "telegram",
+  "status": "needs_account",
+  "title": "Подписки",
+  "updated_at": "2026-10-27T07:32:05Z",
+  "usd_rate": null,
+  "version": 1
+ },
+ "unclear": {
+  "action_ids": [],
+  "ai_available": true,
+  "cards": [
+   {
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "send_text",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": "расход вчера 100к",
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "opt-0",
+      "label": "Это расход…",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "send_text",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": "перевод вчера 100к",
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "opt-1",
+      "label": "Это перевод…",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "manual",
+       "prefill": {
+        "text": "перевел вчера"
+       },
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "manual",
+      "label": "Вручную",
+      "style": "ghost"
+     }
+    ],
+    "keep_input": true,
+    "kind": "unclear",
+    "question": "«перевел вчера» — не хватает суммы.",
+    "reason": "missing_amount",
+    "subtitle": null,
+    "title": "Не понял, что записать"
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "llm"
+ },
+ "undo_result": {
+  "changed": [
+   "transactions"
+  ],
+  "status": "undone",
+  "summary": "Отменено: 150 000 ₫ · Еда",
+  "undo_action_id": "7c1d0e4f-2222-4b3c-8d4e-000000000001",
+  "undone_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001"
+ },
+ "undone": {
+  "action_ids": [],
+  "ai_available": true,
+  "cards": [
+   {
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "7c1d0e4f-2222-4b3c-8d4e-000000000001",
+       "category_id": null,
+       "kind": "redo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "redo",
+      "label": "Вернуть",
+      "style": "ghost"
+     }
+    ],
+    "kind": "undone",
+    "subtitle": null,
+    "title": "Отменено: 150 000 ₫ · Еда",
+    "undo_action_id": "7c1d0e4f-2222-4b3c-8d4e-000000000001",
+    "undone_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001"
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ },
+ "updated": {
+  "action_ids": [
+   "6b0c0d3e-1111-4a2b-9c3d-000000000002"
+  ],
+  "ai_available": true,
+  "cards": [
+   {
+    "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+    "buttons": [
+     {
+      "action": {
+       "account_id": null,
+       "action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000002",
+       "category_id": null,
+       "kind": "undo",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": null
+      },
+      "hotkey": null,
+      "id": "undo",
+      "label": "Отменить",
+      "style": "ghost"
+     },
+     {
+      "action": {
+       "account_id": null,
+       "action_id": null,
+       "category_id": null,
+       "kind": "edit",
+       "prefill": null,
+       "preview_token": null,
+       "route": null,
+       "text": null,
+       "transaction_id": 101
+      },
+      "hotkey": null,
+      "id": "edit",
+      "label": "Изменить",
+      "style": "ghost"
+     }
+    ],
+    "changes": [
+     "150 000 ₫ → 250 000 ₫"
+    ],
+    "debt": null,
+    "kind": "updated",
+    "subtitle": "Карта · сегодня, 14:32",
+    "title": "250 000 ₫ · Еда",
+    "transaction": {
+     "account": {
+      "icon": "Landmark",
+      "id": 1,
+      "name": "Карта"
+     },
+     "account_amount": "250000",
+     "account_asset": "VND",
+     "account_rate": null,
+     "amount": "250000",
+     "amount_usd": null,
+     "amount_vnd": "250000",
+     "category": {
+      "color": null,
+      "icon": null,
+      "id": 1,
+      "is_business": false,
+      "is_new": false,
+      "kind": "expense",
+      "name": "Еда"
+     },
+     "counter_account": null,
+     "counter_amount": null,
+     "counter_asset": null,
+     "counterparty": null,
+     "created_action_id": "6b0c0d3e-1111-4a2b-9c3d-000000000001",
+     "created_at": "2026-10-27T07:32:05Z",
+     "currency": "VND",
+     "debt": null,
+     "description": null,
+     "id": 101,
+     "is_business": false,
+     "is_estimated": false,
+     "kind": "expense",
+     "merchant": null,
+     "occurred_at": "2026-10-27T07:32:05Z",
+     "occurred_on": "2026-10-27",
+     "rate_date": null,
+     "rate_source": null,
+     "raw_text": null,
+     "recurring_id": null,
+     "refund_of_id": null,
+     "source": "telegram",
+     "status": "posted",
+     "title": "Еда",
+     "updated_at": "2026-10-27T07:32:05Z",
+     "usd_rate": null,
+     "version": 1
+    }
+   }
+  ],
+  "changed": [
+   "transactions",
+   "stats"
+  ],
+  "request_id": 812,
+  "route": "parser"
+ }
+}

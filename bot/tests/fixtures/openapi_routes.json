@@ -1,0 +1,244 @@
+{
+ "/api/v1/accounts": [
+  "GET",
+  "POST"
+ ],
+ "/api/v1/accounts/balances": [
+  "GET"
+ ],
+ "/api/v1/accounts/onboarding": [
+  "POST"
+ ],
+ "/api/v1/accounts/{account_id}": [
+  "DELETE",
+  "GET",
+  "PATCH"
+ ],
+ "/api/v1/accounts/{account_id}/opening": [
+  "PUT"
+ ],
+ "/api/v1/actions": [
+  "GET"
+ ],
+ "/api/v1/actions/{action_id}/undo": [
+  "POST"
+ ],
+ "/api/v1/adjustments": [
+  "POST"
+ ],
+ "/api/v1/assistant/messages": [
+  "POST"
+ ],
+ "/api/v1/assistant/previews/{token}/cancel": [
+  "POST"
+ ],
+ "/api/v1/assistant/previews/{token}/confirm": [
+  "POST"
+ ],
+ "/api/v1/audit": [
+  "GET"
+ ],
+ "/api/v1/auth/device-login": [
+  "POST"
+ ],
+ "/api/v1/auth/login": [
+  "POST"
+ ],
+ "/api/v1/auth/logout": [
+  "POST"
+ ],
+ "/api/v1/auth/logout-all": [
+  "POST"
+ ],
+ "/api/v1/auth/me": [
+  "GET"
+ ],
+ "/api/v1/auth/sessions": [
+  "GET"
+ ],
+ "/api/v1/auth/sessions/{session_id}": [
+  "DELETE"
+ ],
+ "/api/v1/bot/outbox/claim": [
+  "POST"
+ ],
+ "/api/v1/bot/outbox/{item_id}/ack": [
+  "POST"
+ ],
+ "/api/v1/categories": [
+  "GET",
+  "POST"
+ ],
+ "/api/v1/categories/merge": [
+  "POST"
+ ],
+ "/api/v1/categories/suggest": [
+  "GET"
+ ],
+ "/api/v1/categories/{category_id}": [
+  "DELETE",
+  "PATCH"
+ ],
+ "/api/v1/debts": [
+  "GET"
+ ],
+ "/api/v1/debts/operations": [
+  "POST"
+ ],
+ "/api/v1/debts/{debt_id}": [
+  "DELETE",
+  "GET",
+  "PATCH"
+ ],
+ "/api/v1/debts/{debt_id}/snooze": [
+  "POST"
+ ],
+ "/api/v1/devices": [
+  "GET"
+ ],
+ "/api/v1/devices/{device_id}": [
+  "DELETE"
+ ],
+ "/api/v1/events/stream": [
+  "GET"
+ ],
+ "/api/v1/exchanges": [
+  "POST"
+ ],
+ "/api/v1/export/full": [
+  "GET"
+ ],
+ "/api/v1/export/transactions": [
+  "GET"
+ ],
+ "/api/v1/health": [
+  "GET"
+ ],
+ "/api/v1/merchants": [
+  "GET",
+  "POST"
+ ],
+ "/api/v1/merchants/{merchant_id}": [
+  "DELETE",
+  "PATCH"
+ ],
+ "/api/v1/my-accounts": [
+  "GET",
+  "POST"
+ ],
+ "/api/v1/my-accounts/{my_account_id}": [
+  "DELETE"
+ ],
+ "/api/v1/passkeys": [
+  "GET"
+ ],
+ "/api/v1/passkeys/login/options": [
+  "POST"
+ ],
+ "/api/v1/passkeys/login/verify": [
+  "POST"
+ ],
+ "/api/v1/passkeys/register/options": [
+  "POST"
+ ],
+ "/api/v1/passkeys/register/verify": [
+  "POST"
+ ],
+ "/api/v1/passkeys/{passkey_id}": [
+  "DELETE",
+  "PATCH"
+ ],
+ "/api/v1/rates/convert": [
+  "GET"
+ ],
+ "/api/v1/rates/latest": [
+  "GET"
+ ],
+ "/api/v1/rates/refresh": [
+  "POST"
+ ],
+ "/api/v1/recurring": [
+  "GET",
+  "POST"
+ ],
+ "/api/v1/recurring/{rid}": [
+  "DELETE",
+  "PATCH"
+ ],
+ "/api/v1/recurring/{rid}/record": [
+  "POST"
+ ],
+ "/api/v1/recurring/{rid}/skip": [
+  "POST"
+ ],
+ "/api/v1/reports/{kind}": [
+  "GET"
+ ],
+ "/api/v1/reports/{kind}/send": [
+  "POST"
+ ],
+ "/api/v1/search": [
+  "GET"
+ ],
+ "/api/v1/settings": [
+  "GET",
+  "PATCH"
+ ],
+ "/api/v1/settings/server": [
+  "GET"
+ ],
+ "/api/v1/stats/business": [
+  "GET"
+ ],
+ "/api/v1/stats/by-category": [
+  "GET"
+ ],
+ "/api/v1/stats/compare": [
+  "GET"
+ ],
+ "/api/v1/stats/daily-average": [
+  "GET"
+ ],
+ "/api/v1/stats/series": [
+  "GET"
+ ],
+ "/api/v1/stats/summary": [
+  "GET"
+ ],
+ "/api/v1/stats/top": [
+  "GET"
+ ],
+ "/api/v1/transactions": [
+  "GET",
+  "POST"
+ ],
+ "/api/v1/transactions/needs-account/count": [
+  "GET"
+ ],
+ "/api/v1/transactions/{tx_id}": [
+  "DELETE",
+  "GET",
+  "PATCH"
+ ],
+ "/api/v1/transactions/{tx_id}/account": [
+  "POST"
+ ],
+ "/api/v1/transactions/{tx_id}/history": [
+  "GET"
+ ],
+ "/api/v1/transactions/{tx_id}/restore": [
+  "POST"
+ ],
+ "/api/v1/transfers": [
+  "POST"
+ ],
+ "/api/v1/users/me": [
+  "GET"
+ ],
+ "/api/v1/users/me/password": [
+  "POST"
+ ],
+ "/api/v1/users/me/wipe": [
+  "POST"
+ ]
+}

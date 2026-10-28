@@ -1,0 +1,193 @@
+# Pocket Finance CI (GitHub-hosted runners only).
+#   backend   ruff + pytest against a PostgreSQL 16 service
+#   bot       ruff + pytest (Telegram is mocked, no token needed)
+#   web       eslint + vitest + production build (artifact web-dist)
+#   desktop   typecheck + unit tests + electron-vite build (no Windows packaging here)
+#   infra     shellcheck, compose config with placeholder values, offline infra tests
+# No secrets are used. Third-party actions are pinned to full commit SHAs (version in comment).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_VERSION: "0.13.6"
+  PNPM_VERSION: "12.15.0"
+  NODE_VERSION: "22"
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: pf
+          POSTGRES_PASSWORD: pf
+          POSTGRES_DB: pf_ci_test
+          POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U pf -d pf_ci_test"
+          --health-interval 5s --health-timeout 5s --health-retries 30
+    env:
+      TEST_DATABASE_URL: postgresql+asyncpg://pf:pf@127.0.0.1:5432/pf_ci_test
+      APP_ENV: test
+      PF_LIVE: "0"
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: ${{ env.PYTHON_VERSION }}
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: Ruff
+        run: uv run ruff check .
+      - name: Pytest
+        run: uv run pytest -q -p no:cacheprovider
+
+  bot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: bot
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: ${{ env.PYTHON_VERSION }}
+          enable-cache: true
+          cache-dependency-glob: bot/uv.lock
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: Ruff
+        run: uv run ruff check .
+      - name: Pytest
+        run: uv run pytest -q -p no:cacheprovider
+
+  web:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm run lint
+      - name: Unit tests
+        run: pnpm exec vitest run
+      - name: Build (tsc + vite)
+        run: pnpm run build
+      - name: Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+      - name: E2E (mock API)
+        run: pnpm run e2e
+      - name: E2E — operations pages (mock API)
+        run: pnpm run e2e:operations
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: web-dist
+          path: web/dist
+          retention-days: 7
+
+  desktop:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      # Unit tests and electron-vite build do not run Electron itself.
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: desktop/pnpm-lock.yaml
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm run typecheck
+      - name: Unit tests
+        run: pnpm exec vitest run
+      - name: Build main/preload/native pages
+        run: pnpm run build
+
+  infra:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Tools
+        run: |
+          if ! command -v rsync >/dev/null || ! command -v shellcheck >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq rsync openssh-client shellcheck >/dev/null
+          fi
+      - name: Shell syntax + shellcheck
+        run: |
+          for f in scripts/*.sh infra/docker/*.sh infra/caddy/*.sh; do bash -n "$f"; done
+          for f in infra/backup/*.sh infra/tests/*.sh; do sh -n "$f"; done
+          # SC2010: dump names are generated by pf-backup (no spaces/newlines), ls | grep is fine.
+          shellcheck -S warning -e SC2010 scripts/*.sh infra/docker/*.sh infra/caddy/*.sh \
+            infra/backup/*.sh infra/tests/*.sh
+      - name: Compose config (placeholder values)
+        run: |
+          cp .env.example "$RUNNER_TEMP/ci.env"
+          {
+            echo "POSTGRES_PASSWORD=ci"
+            echo "SECRET_KEY=ci-secret-key-0123456789abcdef0123456789"
+            echo "BOT_SERVICE_TOKEN=ci-bot-token-0123456789abcdef"
+            echo "PUBLIC_URL=https://pocket.example.com"
+            echo "PF_DOMAIN=pocket.example.com"
+          } >>"$RUNNER_TEMP/ci.env"
+          docker compose --env-file "$RUNNER_TEMP/ci.env" config -q
+          docker compose --env-file "$RUNNER_TEMP/ci.env" --profile standalone config -q
+      - name: Offline infra tests (backup rotation, scripts, image helpers, release config)
+        run: sh scripts/ci-backup-tests.sh

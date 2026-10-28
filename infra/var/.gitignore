@@ -1,0 +1,3 @@
+# Runtime data (backups, ssh keys for the remote backup host) — never committed.
+*
+!.gitignore

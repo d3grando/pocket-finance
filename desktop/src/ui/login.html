@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pocket — вход</title>
+  </head>
+  <body>
+    <div class="header">
+      <span class="brand"><span class="logo"></span>Pocket</span>
+      <span class="spacer"></span>
+      <span class="dot" id="dot"></span>
+      <button class="icon-btn" id="close" title="Скрыть (Esc)" aria-label="Скрыть">✕</button>
+    </div>
+    <main class="login">
+      <div class="logo big" aria-hidden="true"></div>
+      <h1>Вход в Pocket</h1>
+      <div class="muted" id="server-host"></div>
+      <!-- fresh install without a built-in address: ask for the server first -->
+      <form id="server-form" class="hidden" autocomplete="off">
+        <p class="caption">Укажите адрес своего сервера Pocket — тот, где открывается веб-версия.</p>
+        <input class="field" id="server-url" type="text" inputmode="url" spellcheck="false" placeholder="https://pocket.example.com" aria-label="Адрес сервера" />
+        <button class="btn primary block" id="server-submit" type="submit">Продолжить <kbd>⏎</kbd></button>
+        <div class="error-text" id="server-error" role="alert"></div>
+      </form>
+      <form id="form" class="hidden" autocomplete="off">
+        <label class="pw">
+          <input class="field" id="password" type="password" placeholder="Пароль" aria-label="Пароль" />
+          <button type="button" class="icon-btn eye" id="eye" title="Показать пароль" aria-label="Показать пароль">👁</button>
+        </label>
+        <button class="btn primary block" id="submit" type="submit">Войти <kbd>⏎</kbd></button>
+        <div class="error-text" id="error" role="alert"></div>
+      </form>
+      <p class="caption hidden" id="password-note">Пароль нужен один раз — дальше приложение входит само.</p>
+      <p class="caption hidden" id="server-line">Сервер: <span id="server-host2"></span> <button class="link" id="change-server">Изменить</button></p>
+    </main>
+    <script type="module" src="./login.ts"></script>
+  </body>
+</html>

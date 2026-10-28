@@ -1,0 +1,79 @@
+# Unsigned Windows build (publish the SHA256 next to the .exe):
+#   pnpm dist:win          — on Windows
+#   pnpm dist:win:docker   — on Linux/macOS, in the electronuserland/builder:wine image
+# Optional: PF_DEFAULT_SERVER_URL=https://pocket.example.com bakes the server address into the build
+# (otherwise the first launch asks for it). The web renderer (../web, mode desktop) is optional:
+# without desktop/renderer/index.html the app uses its built-in lite capture page (out/ui/capture.html).
+# appId must match app.setAppUserModelId() in src/main/index.ts.
+appId: io.github.d3grando.pocket
+productName: Pocket
+copyright: Copyright © 2026 d3grando
+directories:
+  output: release
+  buildResources: build
+files:
+  - out/**
+  - renderer/**
+  - package.json
+  - '!**/*.map'
+extraResources:
+  - from: assets
+    to: assets
+    filter: ['*.png', '*.ico']
+asar: true
+# Electron fuses, flipped in the binary at pack time (defence in depth against code running as the
+# same Windows user): no ELECTRON_RUN_AS_NODE, no NODE_OPTIONS, no --inspect*; the app is loaded
+# only from app.asar and its integrity is checked at startup (Windows/macOS; electron-builder embeds
+# the hash). Remote debugging switches are stripped by src/main/cli-hardening.ts.
+# Verify: pnpm test:packaged (Linux) / pnpm fuses:win after pnpm dist:win.
+electronFuses:
+  runAsNode: false
+  enableNodeOptionsEnvironmentVariable: false
+  enableNodeCliInspectArguments: false
+  enableEmbeddedAsarIntegrityValidation: true
+  onlyLoadAppFromAsar: true
+  grantFileProtocolExtraPrivileges: false
+npmRebuild: false
+nodeGypRebuild: false
+electronLanguages: [ru, en-US]
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: build/icon.ico
+  artifactName: Pocket-Setup-${version}.${ext}
+  executableName: Pocket
+  requestedExecutionLevel: asInvoker
+nsis:
+  oneClick: true
+  perMachine: false
+  runAfterFinish: true
+  shortcutName: Pocket
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  deleteAppDataOnUninstall: false
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  uninstallDisplayName: Pocket
+mac:
+  # Apple Silicon (M1–M5). Built on a macOS runner (GitHub Actions): dmg/zip need macOS tools.
+  target:
+    - target: dmg
+      arch: [arm64]
+    - target: zip
+      arch: [arm64]
+  category: public.app-category.finance
+  icon: build/icon.png
+  # No Apple Developer ID: ad-hoc signature (required to run on Apple Silicon); Gatekeeper asks
+  # once — «Системные настройки → Конфиденциальность и безопасность → Всё равно открыть».
+  identity: '-'
+  hardenedRuntime: false
+  gatekeeperAssess: false
+  artifactName: Pocket-${version}-mac-${arch}.${ext}
+  extendInfo:
+    LSUIElement: true # menu bar app: no Dock icon
+dmg:
+  artifactName: Pocket-${version}-mac-${arch}.${ext}
+linux:
+  target: [dir]
+  icon: build/icon.png

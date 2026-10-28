@@ -1,0 +1,27 @@
+# edge Caddy for a bare VPS (compose profile `standalone`).
+# Rendered by edge-entrypoint.sh into /config/Caddyfile. Automatic HTTPS (Let's Encrypt /
+# ZeroSSL) for PF_DOMAIN; everything goes to the internal edge listener of the `web` container
+# (web:8081, which serves the SPA and proxies /api). PF_DOMAIN=localhost → Caddy's internal CA
+# (for tests). Clients reach Caddy directly, so their X-Forwarded-For is replaced with the TCP
+# peer address before it goes upstream.
+{
+	__EMAIL_LINE__
+	log {
+		output stdout
+		format json
+		level {$EDGE_LOG_LEVEL:INFO}
+	}
+}
+
+{$PF_DOMAIN} {
+	header -Server
+	reverse_proxy {$WEB_UPSTREAM:web:8081} {
+		# SSE must not be buffered.
+		flush_interval -1
+	}
+	# Error responses (web unreachable) need their own `header -Server`.
+	handle_errors {
+		header -Server
+		respond {err.status_code}
+	}
+}

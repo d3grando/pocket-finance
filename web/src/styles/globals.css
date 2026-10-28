@@ -1,0 +1,14 @@
+/* Tailwind v4 entry + design tokens (DESIGN.md §1.2 → src/styles/tokens.css). */
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/inter/opsz.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+@import './tokens.css';
+
+/* Toasts stay clickable above an open modal sheet / dialog: Radix puts `pointer-events: none` on <body>
+   while a modal is open and the toasts inherited it — «Отменить» in a toast did nothing (desktop) or the
+   tap went through to the sheet underneath (mobile). The sheets keep themselves open on such a click
+   (features/operations/ui/overlays.tsx → keepOpenOnToast). Hidden toasts stay non-interactive. */
+[data-sonner-toast]:not([data-visible='false']) {
+  pointer-events: auto;
+}

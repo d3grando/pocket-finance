@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pocket web (fixture)</title>
+    <script type="module" src="./assets/app.js"></script>
+  </head>
+  <body>
+    <!-- Stand-in for the real web build (web/, mode desktop): exercises the window.pocket contract. -->
+    <h1 id="title">fixture</h1>
+    <div id="path"></div>
+    <div id="kind"></div>
+    <div id="api"></div>
+    <div id="me">…</div>
+    <input id="input" placeholder="На что потратил деньги?" />
+    <button id="open-full">Полная панель</button>
+    <button id="menu-btn" aria-haspopup="menu">⋯</button>
+    <div id="menu" role="menu" hidden><button role="menuitem" id="menu-settings">Настройки</button></div>
+  </body>
+</html>

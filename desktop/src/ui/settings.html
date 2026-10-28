@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pocket — настройки</title>
+  </head>
+  <body class="settings-page">
+    <main class="settings">
+      <h1>Настройки Pocket</h1>
+
+      <section>
+        <h2>Горячая клавиша</h2>
+        <p class="caption">Показать или скрыть окно Pocket из любой программы.</p>
+        <div class="row">
+          <button class="hotkey-box num" id="hotkey" title="Нажмите, затем введите новое сочетание">Ctrl + Alt + Space</button>
+          <button class="btn" id="hotkey-change">Изменить</button>
+          <button class="btn ghost" id="hotkey-reset">По умолчанию</button>
+        </div>
+        <div id="hotkey-msg" class="caption" role="status"></div>
+        <div id="hotkey-suggest" class="row wrap"></div>
+      </section>
+
+      <section>
+        <h2>Запуск</h2>
+        <label class="check">
+          <input type="checkbox" id="autostart" />
+          <span>Запускать вместе с Windows</span>
+        </label>
+        <p class="caption">Pocket стартует свёрнутым в трей.</p>
+      </section>
+
+      <section>
+        <h2>Сервер</h2>
+        <form id="server-form" class="row" autocomplete="off">
+          <input class="field" id="server" type="text" spellcheck="false" placeholder="https://pocket.example.com" aria-label="Адрес сервера" />
+          <button class="btn" id="server-save" type="submit">Сохранить</button>
+        </form>
+        <div id="server-msg" class="caption" role="status"></div>
+        <p class="caption">После смены сервера нужно войти заново. Смену подтверждает системное окно Pocket.</p>
+      </section>
+
+      <section>
+        <h2>Это устройство</h2>
+        <p class="caption" id="device-state">Вход выполнен. Токен устройства хранится в защищённом хранилище Windows.</p>
+        <div class="row">
+          <button class="btn" id="logout">Выйти на этом устройстве</button>
+          <button class="btn ghost" id="all-settings">Все настройки Pocket →</button>
+        </div>
+      </section>
+
+      <footer class="caption" id="version">Pocket</footer>
+    </main>
+    <script type="module" src="./settings.ts"></script>
+  </body>
+</html>

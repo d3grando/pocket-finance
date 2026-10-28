@@ -1,0 +1,10 @@
+# pnpm 12 project settings (see the pnpm docs: pnpm-workspace.yaml). Electron apps need a flat node_modules.
+nodeLinker: hoisted
+allowBuilds:
+  electron: true
+  electron-winstaller: true
+  esbuild: true
+# electron 44.10.0 (security update) was younger than pnpm's minimum release age (1 day) when it was
+# pinned; the entry is a no-op once the release is older than that and can be dropped.
+minimumReleaseAgeExclude:
+  - electron@44.10.0

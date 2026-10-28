@@ -1,0 +1,114 @@
+# Caddy inside the `web` container (plain HTTP, TLS is terminated in front of it).
+#   :8080   the ONLY published port (PF_HTTP_BIND:PF_HTTP_PORT): your reverse proxy points here
+#   :8081   internal listener for the `caddy` edge service (compose profile `standalone`);
+#           never published, reachable only from containers on the compose network
+#   /api/*  → reverse proxy to the API (SSE-safe: flush_interval -1, no compression on events)
+#   /*      → built SPA/PWA from /srv/www (SPA fallback to /index.html, hashed /assets/* immutable)
+# Env: API_UPSTREAM, TRUSTED_PROXIES, WEB_LOG_LEVEL.
+{
+	admin off
+	auto_https off
+	persist_config off
+	# Published port: whose X-Forwarded-For is trusted. Default 127.0.0.1/32 = nobody outside
+	# this container, i.e. the client IP is the TCP peer. Behind your own reverse proxy list its
+	# exact address(es) in TRUSTED_PROXIES (space-separated CIDRs), so that nobody else who can
+	# reach the port can pick their own client IP (login limits and bans are per IP).
+	servers :8080 {
+		trusted_proxies static {$TRUSTED_PROXIES:127.0.0.1/32}
+		# Walk X-Forwarded-For right→left and stop at the first untrusted hop: the left part of
+		# the header is whatever the client sent (a proxy may append instead of replacing).
+		trusted_proxies_strict
+		client_ip_headers X-Forwarded-For X-Real-IP
+	}
+	# Edge listener: only containers of this compose project can connect (the port is not
+	# published). The edge Caddy discards X-Forwarded-For sent by clients and sets exactly one
+	# address (its TCP peer), so the header is taken as is — LAN clients with private addresses
+	# keep their own IP too.
+	servers :8081 {
+		trusted_proxies static private_ranges
+		client_ip_headers X-Forwarded-For
+	}
+	log {
+		output stdout
+		format json
+		level {$WEB_LOG_LEVEL:INFO}
+	}
+}
+
+:8080, :8081 {
+	header -Server
+
+	# Liveness of the web container itself (does not touch the API).
+	handle /healthz {
+		respond "ok" 200
+	}
+
+	handle /api/* {
+		request_body {
+			max_size 10MB
+		}
+		@compressible not path /api/v1/events/*
+		encode @compressible zstd gzip
+		reverse_proxy {$API_UPSTREAM:api:8000} {
+			# SSE (/api/v1/events/stream): pass every chunk through immediately.
+			flush_interval -1
+			# The API gets exactly one address: the client IP decided above. It trusts
+			# X-Forwarded-For only from this container (TRUSTED_PROXIES=auto in the api).
+			header_up X-Forwarded-For {client_ip}
+			header_up X-Real-IP {client_ip}
+			transport http {
+				dial_timeout 5s
+			}
+		}
+	}
+
+	handle {
+		root * /srv/www
+		encode zstd gzip
+
+		header {
+			X-Content-Type-Options "nosniff"
+			Referrer-Policy "same-origin"
+			X-Frame-Options "DENY"
+			Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+			Strict-Transport-Security "max-age=31536000"
+			X-Robots-Tag "noindex, nofollow"
+			Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+		}
+		# Vite puts content-hashed files into /assets/ — cache forever; everything else
+		# (index.html, sw.js, manifest, icons) must be revalidated so updates arrive.
+		@immutable path /assets/*
+		header @immutable Cache-Control "public, max-age=31536000, immutable"
+		@mutable not path /assets/*
+		header @mutable Cache-Control "no-cache"
+		@manifest path *.webmanifest
+		header @manifest Content-Type "application/manifest+json"
+
+		# SPA fallback for client routes (/operations, /settings/...). Missing hashed assets
+		# get a real 404 instead of index.html.
+		@spa {
+			not path /assets/*
+			not file
+		}
+		rewrite @spa /index.html
+		file_server
+	}
+
+	# Error responses need their own `header -Server` (otherwise they carry "Server: Caddy").
+	# API unreachable (restart, migrations) → JSON in the API error format (docs/ARCH.md §10).
+	handle_errors {
+		header -Server
+		@api_down {
+			path /api/*
+			expression `{err.status_code} in [502, 503, 504]`
+		}
+		handle @api_down {
+			header Content-Type "application/json; charset=utf-8"
+			header Retry-After "5"
+			respond `{"error":{"code":"service_unavailable","message":"Сервер временно недоступен, попробуйте ещё раз","details":null,"request_id":null}}` 503
+		}
+		handle {
+			respond {err.status_code}
+		}
+	}
+}

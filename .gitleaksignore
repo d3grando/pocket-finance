@@ -1,0 +1,8 @@
+# gitleaks false positives (generic-api-key). None of these is a secret:
+# - security.py: _PASSWORD_ALPHABET, the character set for generated passwords
+# - ci.yml, infra/tests/test_release_config.py: dummy SECRET_KEY for `docker compose config` in CI
+# - backend/tests/conftest.py: dummy SECRET_KEY for the test suite
+backend/app/core/security.py:generic-api-key:35
+.github/workflows/ci.yml:generic-api-key:185
+backend/tests/conftest.py:generic-api-key:26
+infra/tests/test_release_config.py:generic-api-key:26

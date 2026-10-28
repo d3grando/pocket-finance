@@ -1,0 +1,22 @@
+# Per-Dockerfile ignore (BuildKit): build context is the repo root.
+**/node_modules
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.ruff_cache
+**/.mypy_cache
+**/dist
+**/dev-dist
+**/coverage
+**/*.tsbuildinfo
+**/test-results
+**/playwright-report
+# secrets and local env files at any depth (examples are fine)
+**/.env*
+!**/.env.example
+**/*.local
+.git
+desktop
+infra/var
+backups
